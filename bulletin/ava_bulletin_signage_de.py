@@ -3,7 +3,7 @@ from datetime import datetime
 import math
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
-import io, hashlib
+import hashlib
 from collections import OrderedDict
 
 # METHODS
@@ -359,10 +359,21 @@ snow_type = {
     "persistent_weak_layers": "Persistente Schwachschicht"
 }
 
+# for automation
+parser = argparse.ArgumentParser()
+parser.add_argument("--date", default="today")
+parser.add_argument("--out", default="bulletin/output/bulletin.html")
+args = parser.parse_args()
+
+# figure out date
+if args.date == "today":
+    ACTIVE_AT = datetime.datetime.now().date()
+else:
+    ACTIVE_AT = datetime.date.fromisoformat(args.date)
+
 # Global Config
 REGION_ID = "CH-4211"  # Leukerbad - Lötschental
 LANG = "de"
-ACTIVE_AT = "2025-04-17T08:00:00+01:00"
 
 url = f"https://aws.slf.ch/api/bulletin/caaml/{LANG}/geojson"
 params = {"activeAt": ACTIVE_AT}
@@ -485,7 +496,6 @@ else:
     html_output.append("</body></html>")
 
     # Write to file
-    with open("signage_bulletin.html", "w", encoding="utf-8") as f:
-        f.write("\n".join(html_output))
+    with open(args.out, "w", encoding="utf-8") as f:
+        f.write(html_output)
 
-    print("HTML bulletin written to signage_bulletin.html")
