@@ -522,4 +522,4 @@ else:
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     with out_path.open("w", encoding="utf-8") as f:
-        f.write(html_output)
+        f.write("\n".join(html_output))
