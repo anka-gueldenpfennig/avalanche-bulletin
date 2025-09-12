@@ -38,7 +38,7 @@ def draw_compass(expos, ax=None, *,
                  tip_len_diag=0.28, tip_len_card=0.40,  # diagonals vs cardinals
                  face_on="#9fb7ff", face_off="#e7e7e7",
                  edge="#333333", lw=3.0,
-                 label_size=21, label_offset=1.6,
+                 label_size=18, label_offset=1.6,
                  title=None):
     expos = {e.upper() for e in expos}
     if ax is None:
@@ -104,7 +104,6 @@ def strip_svg_size(svg_path: str | Path):
 
     # write back (preserve UTF-8 and XML declaration)
     tree.write(svg_path, encoding="utf-8", xml_declaration=True)
-
 # --- end of compass methods ---
 
 # --- grouping methods ---
@@ -158,7 +157,7 @@ def parse_active_at(s: str) -> datetime:
 def styles():
     html_styles = """<!DOCTYPE html>
     <html lang="de">
-    <link rel="stylesheet" href="https://leukerbad.ch/assets/main.7bff5f3d918ee6e071fa.css"
+    <link rel="stylesheet" href="https://leukerbad.ch/assets/css/modules.a2c3a652.css?v=1756307769"
     <head>
       <meta charset="UTF-8">
       <title>Lawinenbulletin</title>
@@ -321,7 +320,6 @@ def render_group_card(g):
 
     # Row 3: Exposition
     html_output.append("<div style='display:flex; align-items:center;'>")
-#    html_output.append("<div style='width:60px;'>")
     if g['fname']:
         html_output.append(f"<img class = 'compass-img' src='static/images/{g['fname']}' style='max-width:60px; max-height:auto; margin-right:10px;' />")
     html_output.append(f"<p style='margin:0; overflow-wrap:anywhere; word-break:break-word;'><b style='font-weight:700;'>Exposition:</b> {g['expo_text']}</p>")
