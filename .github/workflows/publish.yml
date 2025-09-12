@@ -31,10 +31,8 @@ jobs:
       - name: Build bulletin (Europe/Zurich)
         env:
           TZ: Europe/Zurich
-          # If you later need API keys, add them as repo secrets and reference here:
-          # SLF_API_KEY: ${{ secrets.SLF_API_KEY }}
         run: |
-          python bulletin/slf_bulletin.py --date 2025-04-17 --out bulletin/output/bulletin.html
+          python bulletin/ava_bulletin_signage_de.py --date 2025-04-17 --out bulletin/output/bulletin.html
 
       - name: Prepare publish folder
         run: |
