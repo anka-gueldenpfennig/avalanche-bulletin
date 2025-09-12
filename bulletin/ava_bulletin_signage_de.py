@@ -1,5 +1,5 @@
 import requests
-from datetime import datetime
+import datetime
 import math
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
@@ -113,6 +113,26 @@ def is_pure_other(entries):
     return all(pt == "no_distinct_avalanche_problem" for pt, _ in entries)
 
 # --- end of grouping methods ---
+
+# handling date input
+def parse_active_at(s: str) -> datetime:
+    """
+    Accepts:
+      - 'today' → returns today at 08:00 in Europe/Zurich
+      - 'YYYY-MM-DD' → builds 08:00 local time that day
+      - 'YYYY-MM-DDTHH:MM[:SS][+/-HH:MM]' → parsed as-is (timezone-aware)
+    """
+    if s == "today":
+        return datetime.now(TZ).replace(hour=8, minute=0, second=0, microsecond=0)
+
+    try:
+        # Full ISO with or without offset
+        return datetime.fromisoformat(s)
+    except ValueError:
+        # Maybe just a date
+        d = date.fromisoformat(s)
+        return datetime(d.year, d.month, d.day, 8, 0, tzinfo=TZ)
+
 # --- build HTML methods ---
 # styles header
 def styles():
@@ -311,6 +331,9 @@ def render_group_card(g):
 
 def footer_date(ACTIVE_AT):
     # Parse ISO format into datetime
+    dt = datetime.datetime.fromisoformat(args.date)
+    only_date = datetime.date.fromisoformat("2025-04-17")
+
     dt = datetime.fromisoformat(ACTIVE_AT)
 
     # Format into German-style date/time: dd.mm.yyyy, HH:MM
@@ -367,14 +390,12 @@ parser.add_argument("--out", default="bulletin/output/bulletin.html")
 args = parser.parse_args()
 
 # figure out date
-if args.date == "today":
-    ACTIVE_AT = datetime.datetime.now().date()
-else:
-    ACTIVE_AT = datetime.date.fromisoformat(args.date)
+ACTIVE_AT = parse_active_at(args.date)
 
 # Global Config
 REGION_ID = "CH-4211"  # Leukerbad - Lötschental
 LANG = "de"
+TZ = ZoneInfo("Europe/Zurich")
 
 url = f"https://aws.slf.ch/api/bulletin/caaml/{LANG}/geojson"
 params = {"activeAt": ACTIVE_AT}
