@@ -74,7 +74,7 @@ def draw_compass(expos, ax=None, *,
 
 # save compass to file
 def save_compass(expos, path, fmt="svg", *, bg_transparent=True, dpi=180):
-    fig, ax = plt.subplots(figsize=(4,4))
+    fig, ax = plt.subplots(figsize=(2,2))
     draw_compass(expos, ax=ax)
     kw = dict(bbox_inches="tight", pad_inches=0.01)
     if fmt.lower() == "svg":
