@@ -332,7 +332,8 @@ def render_group_card(g):
     html_output.append("</div>")
 
     # Row 3: Exposition
-    html_output.append("<div style='display:flex; align-items:center;'>")
+#    html_output.append("<div style='display:flex; align-items:center;'>")
+    html_output.append("<div style='width:60px;'>")
     if g['fname']:
         html_output.append(f"<img src='static/images/{g['fname']}' style='max-width:60px; max-height:auto; margin-right:10px;' />")
     html_output.append(f"<p style='margin:0; overflow-wrap:anywhere; word-break:break-word;'><b style='font-weight:700;'>Exposition:</b> {g['expo_text']}</p>")
