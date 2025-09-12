@@ -38,7 +38,7 @@ def draw_compass(expos, ax=None, *,
                  tip_len_diag=0.28, tip_len_card=0.40,  # diagonals vs cardinals
                  face_on="#9fb7ff", face_off="#e7e7e7",
                  edge="#333333", lw=3.0,
-                 label_size=18, label_offset=1.6,
+                 label_size=16, label_offset=1.8,
                  title=None):
     expos = {e.upper() for e in expos}
     if ax is None:
@@ -158,10 +158,8 @@ def styles():
     html_styles = """<!DOCTYPE html>
     <html lang="de">
     <link rel="stylesheet" href="https://leukerbad.ch/assets/css/modules.a2c3a652.css?v=1756307769"
-    <head>
       <meta charset="UTF-8">
       <title>Lawinenbulletin</title>
-      <style>
       <style>
         /* reset anything that could blur SVGs */
         .compass-img {
@@ -195,8 +193,7 @@ def styles():
         }
         
       </style>
-    </head>
-    <body>
+      <body> 
     """
 
     return html_styles
