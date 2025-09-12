@@ -7,6 +7,7 @@ import hashlib
 from collections import OrderedDict
 import argparse
 from zoneinfo import ZoneInfo
+from pathlib import Path
 
 # METHODS
 # --- compass methods ---
@@ -513,6 +514,10 @@ else:
     html_output.append("</body></html>")
 
     # Write to file
-    with open(args.out, "w", encoding="utf-8") as f:
-        f.write(html_output)
+    out_path = Path(args.out)
+    if not out_path.is_absolute():
+        out_path = (SCRIPT_DIR / out_path).resolve()
+    out_path.parent.mkdir(parents=True, exist_ok=True)
 
+    with out_path.open("w", encoding="utf-8") as f:
+        f.write(html_output)
