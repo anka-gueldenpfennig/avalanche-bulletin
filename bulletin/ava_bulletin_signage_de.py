@@ -514,6 +514,8 @@ else:
     html_output.append("</body></html>")
 
     # Write to file
+    SCRIPT_DIR = Path(__file__).resolve().parent
+
     out_path = Path(args.out)
     if not out_path.is_absolute():
         out_path = (SCRIPT_DIR / out_path).resolve()
