@@ -163,8 +163,8 @@ def styles():
       <title>Lawinenbulletin</title>
       <style>
         body {
-            margin: 10px;
-            padding: 10px;
+            margin: 4000px;
+            padding: 20px;
         }
         /* reset anything that could blur SVGs */
         .compass-img {
