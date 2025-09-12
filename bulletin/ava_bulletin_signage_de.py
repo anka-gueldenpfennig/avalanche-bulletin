@@ -163,7 +163,7 @@ def styles():
       <title>Lawinenbulletin</title>
       <style>
         body {
-            margin: 100px 10px 10px 10px;
+            margin: 80px 20px 10px 20px;
             padding: 0px;
         }
         /* reset anything that could blur SVGs */
@@ -180,7 +180,7 @@ def styles():
         
         .alert-beacon{
           position:fixed;
-          top:16px;
+          top:80px;
           right:20px;
           width:16px; height:16px;
           border-radius:50%;
