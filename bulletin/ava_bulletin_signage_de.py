@@ -163,31 +163,19 @@ def styles():
       <meta charset="UTF-8">
       <title>Lawinenbulletin</title>
       <style>
-        body {
-          font-family: Helvetica, Arial, sans-serif;
-          font-size: 16px;
-          font-weight: 300;
-          line-height: 1.5;
-          padding: 20px;
-          max-width: 2000px;
-          margin: auto;
-        }
-        h1, h2, h3, h4, h5, h6 {
-          font-family: Mark, Arial, sans-serif;
-          font-weight: 700;
-          letter-spacing: .02em;
-          margin-top: 1em;
-        }
-        .section {
-          margin-bottom: 20px;
-        }
-        .danger {
-          font-weight: bold;
-        }
-        .subheading {
-          font-weight: bold;
-          margin-top: 10px;
-        }
+      <style>
+        /* reset anything that could blur SVGs */
+        .compass-img {
+            height:60px; width:auto; display:block;
+            transform:none !important;
+            filter:none !important;
+            opacity:1 !important;
+            image-rendering:auto;
+            will-change:auto;
+        }      
+        /* ask the browser for precise vector/text rendering */
+        svg { text-rendering: geometricPrecision; shape-rendering: geometricPrecision; }
+        
         .alert-beacon{
           position:fixed;
           top:16px;
@@ -335,7 +323,7 @@ def render_group_card(g):
 #    html_output.append("<div style='display:flex; align-items:center;'>")
     html_output.append("<div style='width:60px;'>")
     if g['fname']:
-        html_output.append(f"<img src='static/images/{g['fname']}' style='max-width:60px; max-height:auto; margin-right:10px;' />")
+        html_output.append(f"<img class = 'compass-img' src='static/images/{g['fname']}' style='max-width:60px; max-height:auto; margin-right:10px;' />")
     html_output.append(f"<p style='margin:0; overflow-wrap:anywhere; word-break:break-word;'><b style='font-weight:700;'>Exposition:</b> {g['expo_text']}</p>")
     html_output.append("</div>")
 
