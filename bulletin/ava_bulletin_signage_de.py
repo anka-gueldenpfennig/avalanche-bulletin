@@ -331,11 +331,8 @@ def render_group_card(g):
     html_output.append("</div>")
 
 def footer_date(ACTIVE_AT):
-    # Parse ISO format into datetime
-    dt = datetime.datetime.fromisoformat(ACTIVE_AT)
-
     # Format into German-style date/time: dd.mm.yyyy, HH:MM
-    formatted_date = dt.strftime("%d.%m.%Y, %H:%M")
+    formatted_date = ACTIVE_AT.strftime("%d.%m.%Y, %H:%M")
 
     # Footer note (fixed bottom right)
     html_date = f"""
