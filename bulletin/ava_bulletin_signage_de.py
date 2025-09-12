@@ -123,15 +123,15 @@ def parse_active_at(s: str) -> datetime:
       - 'YYYY-MM-DDTHH:MM[:SS][+/-HH:MM]' → parsed as-is (timezone-aware)
     """
     if s == "today":
-        return datetime.now(TZ).replace(hour=8, minute=0, second=0, microsecond=0)
+        return datetime.datetime.now(TZ).replace(hour=8, minute=0, second=0, microsecond=0)
 
     try:
         # Full ISO with or without offset
-        return datetime.fromisoformat(s)
+        return datetime.datetime.fromisoformat(s)
     except ValueError:
         # Maybe just a date
-        d = date.fromisoformat(s)
-        return datetime(d.year, d.month, d.day, 8, 0, tzinfo=TZ)
+        d = datetime.date.fromisoformat(s)
+        return datetime.datetime(d.year, d.month, d.day, 8, 0, tzinfo=TZ)
 
 # --- build HTML methods ---
 # styles header
