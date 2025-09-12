@@ -8,6 +8,7 @@ from collections import OrderedDict
 import argparse
 from zoneinfo import ZoneInfo
 from pathlib import Path
+import xml.etree.ElementTree as ET
 
 # METHODS
 # --- compass methods ---
@@ -77,9 +78,11 @@ def save_compass(expos, path, fmt="svg", *, bg_transparent=True, dpi=180):
     draw_compass(expos, ax=ax)
     kw = dict(bbox_inches="tight", pad_inches=0.01)
     if fmt.lower() == "svg":
-        fig.savefig(path, format="svg", transparent=bg_transparent, bbox_inches="tight", **kw)
+        fig.savefig(path, format="svg", transparent=bg_transparent, **kw)
+        strip_svg_size(path)
     else:
-        fig.savefig(path, format=fmt, dpi=dpi, transparent=bg_transparent, bbox_inches="tight", **kw)
+        fig.savefig(path, format=fmt, dpi=dpi, transparent=bg_transparent, **kw)
+        strip_svg_size(path)
     plt.close(fig)
 
 # define filename for compass rose icon from exposition list
@@ -87,6 +90,21 @@ def filename_for_expos(expos, prefix="compass_", fmt="svg"):
     key = ",".join(sorted(e.upper() for e in expos))
     h = hashlib.md5(key.encode()).hexdigest()[:10]
     return f"{prefix}{h}.{fmt}"
+
+# remove width/height from compass root svg so scaling is controlled by viewBox -> compass icon not fuzzy
+def strip_svg_size(svg_path: str | Path):
+    svg_path = Path(svg_path)
+    tree = ET.parse(svg_path)
+    root = tree.getroot()
+
+    # remove width/height if present
+    for attr in ["width", "height"]:
+        if attr in root.attrib:
+            root.attrib.pop(attr)
+
+    # write back (preserve UTF-8 and XML declaration)
+    tree.write(svg_path, encoding="utf-8", xml_declaration=True)
+
 # --- end of compass methods ---
 
 # --- grouping methods ---
