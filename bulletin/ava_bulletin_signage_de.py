@@ -163,7 +163,7 @@ def styles():
       <title>Lawinenbulletin</title>
       <style>
         body {
-            margin: 10000px 1000px 1000px 1000px;
+            margin: 500px 20px 20px 20px;
             padding: 20px;
         }
         /* reset anything that could blur SVGs */
