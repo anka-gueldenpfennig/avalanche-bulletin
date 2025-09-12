@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
 import hashlib
 from collections import OrderedDict
+import argparse
 
 # METHODS
 # --- compass methods ---
