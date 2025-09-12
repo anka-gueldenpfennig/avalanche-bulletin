@@ -162,6 +162,10 @@ def styles():
       <meta charset="UTF-8">
       <title>Lawinenbulletin</title>
       <style>
+        body {
+            margin: 10px;
+            padding: 10px;
+        }
         /* reset anything that could blur SVGs */
         .compass-img {
             height:60px; width:auto; display:block;
