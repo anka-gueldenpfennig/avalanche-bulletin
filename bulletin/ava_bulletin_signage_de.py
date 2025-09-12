@@ -477,7 +477,7 @@ else:
 
             # save compass rose
             fname = filename_for_expos(aspects, fmt="svg")
-            save_compass(aspects, f"static/images/{fname}", fmt="svg")
+            save_compass(aspects, f"bulletin/static/images/{fname}", fmt="svg")
 
             # group problem types by same elevation/exposition/comment to deduplicate
             groups[k] = {
