@@ -157,7 +157,8 @@ def parse_active_at(s: str) -> datetime:
 def styles():
     html_styles = """<!DOCTYPE html>
     <html lang="de">
-    <link rel="stylesheet" href="https://leukerbad.ch/assets/css/modules.a2c3a652.css?v=1756307769"
+    <head>
+    <link rel="stylesheet" href="https://leukerbad.ch/assets/css/modules.a2c3a652.css?v=1756307769"> 
       <meta charset="UTF-8">
       <title>Lawinenbulletin</title>
       <style>
@@ -193,6 +194,7 @@ def styles():
         }
         
       </style>
+      </head>
       <body> 
     """
 
