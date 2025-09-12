@@ -158,7 +158,7 @@ def styles():
     html_styles = """<!DOCTYPE html>
     <html lang="de">
     <head>
-    <link rel="stylesheet" href="https://leukerbad.ch/assets/css/modules.a2c3a652.css?v=1756307769"> 
+    <link rel="stylesheet" href="https://leukerbad.ch/assets/main.7bff5f3d918ee6e071fa.css"> 
       <meta charset="UTF-8">
       <title>Lawinenbulletin</title>
       <style>
