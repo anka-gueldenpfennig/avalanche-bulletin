@@ -2,8 +2,8 @@ name: Build & Publish SLF Bulletin
 
 on:
   schedule:
-    # Twice a day at 07:10 and 17:10 in Zürich (cron is UTC: 06:10 & 16:10 in winter, 05:10 & 15:10 in summer)
-    - cron: "10 6,16 * * *"
+    # Twice a day at 08:10 and 17:10 in Zürich (cron is UTC: 07:10 & 16:10 in winter. SLF publishes German at 17:00 and again at 8:00 if level is 3 or above)
+    - cron: "10 7,16 * * *"
   workflow_dispatch: {}   # allow manual run from the Actions tab
   push:
     branches: [ main ]    # also run when you push to main
@@ -32,7 +32,7 @@ jobs:
         env:
           TZ: Europe/Zurich
         run: |
-          python bulletin/ava_bulletin_signage_de.py --date "2025-04-17T08:00:00+01:00" --out output/bulletin.html
+          python bulletin/ava_bulletin_signage_de.py --date "2025-01-01T08:00:00+01:00" --out output/bulletin.html
 
       - name: Prepare publish folder
         run: |

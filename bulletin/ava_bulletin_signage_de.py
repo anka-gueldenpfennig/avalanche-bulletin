@@ -140,6 +140,7 @@ def parse_active_at(s: str) -> datetime:
 def styles():
     html_styles = """<!DOCTYPE html>
     <html lang="de">
+    <link rel="stylesheet" href="https://leukerbad.ch/assets/main.7bff5f3d918ee6e071fa.css"
     <head>
       <meta charset="UTF-8">
       <title>Lawinenbulletin</title>
