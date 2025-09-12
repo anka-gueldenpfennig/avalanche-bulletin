@@ -143,7 +143,7 @@ def styles():
     <link rel="stylesheet" href="https://leukerbad.ch/assets/main.7bff5f3d918ee6e071fa.css"
     <head>
       <meta charset="UTF-8">
-      <title>Lawinenbulletin</title>
+      <h4 class="pb-8">Lawinenbulletin</h4>
       <style>
         body {
           font-family: Helvetica, Arial, sans-serif;
@@ -238,7 +238,7 @@ def html_header(mainValue, warnings, hex_warnings):
     hex_warning = hex_warnings.get(mainValue, mainValue)
 
     # add icon to html
-    html_header.append(f"<img src='static/images/{mainValue}.png' style='height:60px;' />")
+    html_header.append(f"<img src='static/images/{mainValue}.png' style='height:60px; width:60px'/>")
 
     # add warning level to html (with matching colour)
     if hex_warning == "#ffff00" or hex_warning == "#ccff66":
@@ -316,7 +316,7 @@ def render_group_card(g):
     # Row 3: Exposition
     html_output.append("<div style='display:flex; align-items:center;'>")
     if g['fname']:
-        html_output.append(f"<img src='static/images/{g['fname']}' style='max-height:60px; max-width:60px; margin-right:10px;' />")
+        html_output.append(f"<img src='static/images/{g['fname']}' style='max-height:60px; max-width:auto; margin-right:10px;' />")
     html_output.append(f"<p style='margin:0; overflow-wrap:anywhere; word-break:break-word;'><b style='font-weight:700;'>Exposition:</b> {g['expo_text']}</p>")
     html_output.append("</div>")
 
