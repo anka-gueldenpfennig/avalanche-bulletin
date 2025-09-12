@@ -332,10 +332,7 @@ def render_group_card(g):
 
 def footer_date(ACTIVE_AT):
     # Parse ISO format into datetime
-    dt = datetime.datetime.fromisoformat(args.date)
-    only_date = datetime.date.fromisoformat("2025-04-17")
-
-    dt = datetime.fromisoformat(ACTIVE_AT)
+    dt = datetime.datetime.fromisoformat(ACTIVE_AT)
 
     # Format into German-style date/time: dd.mm.yyyy, HH:MM
     formatted_date = dt.strftime("%d.%m.%Y, %H:%M")
