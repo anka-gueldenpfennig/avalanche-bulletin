@@ -235,6 +235,10 @@ def warning_subdivision(region_info):
     sub = ch.get("subdivision")
     sub_sign = subdiv_dict.get(sub, sub)
 
+    # put nothing on the bulletin rather than None after number if there was no input 
+    if sub_sign is None:
+        sub_sign = ("")
+
     return sub_sign
 
 def html_header(mainValue, warnings, hex_warnings):
