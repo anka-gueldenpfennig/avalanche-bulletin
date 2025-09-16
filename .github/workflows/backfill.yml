@@ -17,7 +17,7 @@ jobs:
   backfill:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # needed to publish to gh-pages
+      contents: write
     env:
       TZ: Europe/Zurich
 
@@ -39,7 +39,7 @@ jobs:
         shell: python
         env:
           START_DATE: ${{ github.event.inputs.start_date }}
-          END_DATE:   ${{ github.event.inputs.end_date }}
+          END_DATE: ${{ github.event.inputs.end_date }}
         run: |
           import os, shutil, subprocess, sys
           from pathlib import Path
@@ -50,33 +50,33 @@ jobs:
           end   = date.fromisoformat(os.environ["END_DATE"])
           days = (end - start).days + 1
 
-          out_dir = repo/"bulletin"/"output"
-          img_src = repo/"bulletin"/"static"/"images"
-          public  = repo/"public"/"history"
+          out_dir = repo / "bulletin" / "output"
+          img_src = repo / "bulletin" / "static" / "images"
+          public  = repo / "public" / "history"
           out_dir.mkdir(parents=True, exist_ok=True)
 
           ok = 0
           for i in range(days):
             d = start + timedelta(days=i)
-            out_file = out_dir/f"bulletin_{d.isoformat()}.html"
+            out_file = out_dir / f"bulletin_{d.isoformat()}.html"
             print(f"\n=== Building {d.isoformat()} ===")
-            rc = subprocess.call(["python", "bulletin/slf_bulletin.py",
-                                  "--date", d.isoformat(),
-                                  "--out", str(out_file)])
+            rc = subprocess.call([
+              "python", "bulletin/slf_bulletin.py",
+              "--date", d.isoformat(),
+              "--out", str(out_file)
+            ])
             if rc != 0 or not out_file.exists():
               print(f"Skip {d} (exit={rc})", file=sys.stderr)
               continue
 
-            # Copy to per-day folder
-            day_dir = public/d.isoformat()
-            (day_dir/"static"/"images").mkdir(parents=True, exist_ok=True)
-            shutil.copy2(out_file, day_dir/"index.html")
+            day_dir = public / d.isoformat()
+            (day_dir / "static" / "images").mkdir(parents=True, exist_ok=True)
+            shutil.copy2(out_file, day_dir / "index.html")
 
-            # Copy images used for this run into that day's folder
             if img_src.exists():
               for p in img_src.iterdir():
                 if p.is_file():
-                  shutil.copy2(p, day_dir/"static"/"images"/p.name)
+                  shutil.copy2(p, day_dir / "static" / "images" / p.name)
 
             ok += 1
 
