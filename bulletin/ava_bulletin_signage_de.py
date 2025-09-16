@@ -227,6 +227,16 @@ def highest_warning(region_info):
 
     return mainValue
 
+# get the +/-/= too
+def warning_subdivision(region_info):
+    dr = region_info.get("dangerRatings", [])[0]
+    mainValue = dr.get("customData")
+    ch = mainValue.get("CH")
+    sub = ch.get("subdivision")
+    sub_sign = subdiv_dict.get(sub, sub)
+
+    return sub_sign
+
 def html_header(mainValue, warnings, hex_warnings):
     # Top: Main heading
     html_header = []
@@ -251,10 +261,12 @@ def html_header(mainValue, warnings, hex_warnings):
     # add warning level to html (with matching colour)
     if hex_warning == "#ffff00" or hex_warning == "#ccff66":
         html_header.append(
-            f"<span style='font-size:1.4em; font-weight:700; background-color:{hex_warning}; color:#000000; padding: 2px 6px; border-radius:4px; font-weight:700;'>Gefahrenstufe: {german_warning}</h2>")
+            f"<span style='font-size:1.4em; font-weight:700; background-color:{hex_warning}; color:#000000; padding: 2px 6px; border-radius:4px; font-weight:700;'>Gefahrenstufe: {german_warning}</h2>"
+        )
     else:
         html_header.append(
-            f"<span style='font-size:1.4em; font-weight:700; color:{hex_warning}; font-weight:700;'>Gefahrenstufe: {german_warning}</h2>")
+            f"<span style='font-size:1.4em; font-weight:700; color:{hex_warning}; font-weight:700;'>Gefahrenstufe: {german_warning} ({mainValue}{subdiv_value})</h2>"
+        )
 
     # close warning level + header row
     html_header.append("</div>")
@@ -386,6 +398,13 @@ snow_type = {
     "gliding_snow": "Gleitschnee",
     "wet_snow": "Nasser Schnee",
     "persistent_weak_layers": "Persistente Schwachschicht"
+}
+
+subdiv_dict = {
+    "neutral": "=",
+    "minus": "-",
+    "plus": "+",
+    "equal": "="
 }
 
 # for automation
