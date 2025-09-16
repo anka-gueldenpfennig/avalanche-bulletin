@@ -458,6 +458,7 @@ else:
 
     # get highest warning level
     mainValue = highest_warning(region_info)
+    subdiv_value = warning_subdivision(region_info)
 
     # assemble top of html (heading, overall warning level icon + text, warning light)
     html_top = html_header(mainValue, warnings, hex_warnings)
