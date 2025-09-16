@@ -1,0 +1,90 @@
+# .github/workflows/backfill.yml
+name: Backfill season (generate daily bulletins)
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: "Start date (YYYY-MM-DD)"
+        required: true
+        default: "2024-12-01"
+      end_date:
+        description: "End date (YYYY-MM-DD)"
+        required: true
+        default: "2025-04-30"
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # needed to publish to gh-pages
+    env:
+      TZ: Europe/Zurich
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          python -m pip install -U pip
+          pip install -r bulletin/requirements.txt
+
+      - name: Backfill range -> public/history/YYYY-MM-DD/index.html
+        shell: python
+        env:
+          START_DATE: ${{ github.event.inputs.start_date }}
+          END_DATE:   ${{ github.event.inputs.end_date }}
+        run: |
+          import os, shutil, subprocess, sys
+          from pathlib import Path
+          from datetime import date, timedelta
+
+          repo = Path(".").resolve()
+          start = date.fromisoformat(os.environ["START_DATE"])
+          end   = date.fromisoformat(os.environ["END_DATE"])
+          days = (end - start).days + 1
+
+          out_dir = repo/"bulletin"/"output"
+          img_src = repo/"bulletin"/"static"/"images"
+          public  = repo/"public"/"history"
+          out_dir.mkdir(parents=True, exist_ok=True)
+
+          ok = 0
+          for i in range(days):
+            d = start + timedelta(days=i)
+            out_file = out_dir/f"bulletin_{d.isoformat()}.html"
+            print(f"\n=== Building {d.isoformat()} ===")
+            rc = subprocess.call(["python", "bulletin/slf_bulletin.py",
+                                  "--date", d.isoformat(),
+                                  "--out", str(out_file)])
+            if rc != 0 or not out_file.exists():
+              print(f"Skip {d} (exit={rc})", file=sys.stderr)
+              continue
+
+            # Copy to per-day folder
+            day_dir = public/d.isoformat()
+            (day_dir/"static"/"images").mkdir(parents=True, exist_ok=True)
+            shutil.copy2(out_file, day_dir/"index.html")
+
+            # Copy images used for this run into that day's folder
+            if img_src.exists():
+              for p in img_src.iterdir():
+                if p.is_file():
+                  shutil.copy2(p, day_dir/"static"/"images"/p.name)
+
+            ok += 1
+
+          print(f"\nBuilt {ok}/{days} days")
+
+      - name: Publish to gh-pages (under /history/)
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: public
+          publish_branch: gh-pages
