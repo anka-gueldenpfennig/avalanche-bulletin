@@ -82,6 +82,17 @@ jobs:
 
           print(f"\nBuilt {ok}/{days} days")
 
+      - name: Debug: list public dir
+        run: |
+          echo "===== ls -R public ====="
+          ls -R public || true
+
+      - name: Upload public dir artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: backfill-public
+          path: public
+
       - name: Publish to gh-pages (under /history/)
         uses: peaceiris/actions-gh-pages@v3
         with:
