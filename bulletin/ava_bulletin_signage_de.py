@@ -235,7 +235,7 @@ def warning_subdivision(region_info):
     sub = ch.get("subdivision")
     sub_sign = subdiv_dict.get(sub, sub)
 
-    # put nothing on the bulletin rather than None after number if there was no input 
+    # put nothing on the bulletin rather than None after number if there was no input
     if sub_sign is None:
         sub_sign = ("")
 
@@ -265,7 +265,7 @@ def html_header(mainValue, warnings, hex_warnings):
     # add warning level to html (with matching colour)
     if hex_warning == "#ffff00" or hex_warning == "#ccff66":
         html_header.append(
-            f"<span style='font-size:1.4em; font-weight:700; background-color:{hex_warning}; color:#000000; padding: 2px 6px; border-radius:4px; font-weight:700;'>Gefahrenstufe: {german_warning}</h2>"
+            f"<span style='font-size:1.4em; font-weight:700; background-color:{hex_warning}; color:#000000; padding: 2px 6px; border-radius:4px; font-weight:700;'>Gefahrenstufe: {german_warning} ({mainValue}{subdiv_value})</h2>"
         )
     else:
         html_header.append(
@@ -400,8 +400,8 @@ snow_type = {
     "new_snow": "Neuschnee",
     "wind_slab": "Triebschnee",
     "gliding_snow": "Gleitschnee",
-    "wet_snow": "Nasser Schnee",
-    "persistent_weak_layers": "Persistente Schwachschicht"
+    "wet_snow": "Nassschnee",
+    "persistent_weak_layers": "Altschnee"
 }
 
 subdiv_dict = {
