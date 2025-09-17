@@ -320,7 +320,7 @@ def render_group_card(g):
         else:
             # keep spacing aligned when there’s no icon
             html_output.append("<div style='width:48px; height:48px; flex:0 0 48px;'></div>")
-            label = "Sonstige Probleme"
+            label = "Kein ausgeprägtes Lawinenproblem"
 
         # label badge for problem type
         html_output.append(
@@ -349,7 +349,7 @@ def render_group_card(g):
 
     # RIGHT: comment
     html_output.append("<div style='flex:1; min-width:140px;'>")
-    html_output.append(f"<p style='margin:0; overflow-wrap:anywhere; word-break:break-word;'><b style='font-weight:700;'>Informationen:</b> {g['comment']}</p>")
+    html_output.append(f"<p style='margin:0; overflow-wrap:anywhere; word-break:break-word;'><b style='font-weight:700;'>Gefahrenbeschrieb:</b> {g['comment']}</p>")
     html_output.append("</div>")
 
     # --- close inner + card ---
