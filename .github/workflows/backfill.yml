@@ -36,11 +36,11 @@ jobs:
           pip install -r bulletin/requirements.txt
 
       - name: Backfill range -> public/history/YYYY-MM-DD/index.html
-        shell: python
         env:
-          START_DATE: ${{ github.event.inputs.start_date }}
-          END_DATE: ${{ github.event.inputs.end_date }}
+          START_DATE: ${{ inputs.start_date }}
+          END_DATE: ${{ inputs.end_date }}
         run: |
+          python - <<'PY'
           import os, shutil, subprocess, sys
           from pathlib import Path
           from datetime import date, timedelta
@@ -81,6 +81,7 @@ jobs:
             ok += 1
 
           print(f"\nBuilt {ok}/{days} days")
+          PY
 
       - name: Debug: list public dir
         run: |
