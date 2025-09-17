@@ -38,7 +38,7 @@ jobs:
         run: |
           python scripts/backfill.py "${{ github.event.inputs.start_date }}" "${{ github.event.inputs.end_date }}"
 
-      - name: Debug: list public dir
+      - name: Debug list public dir
         run: |
           echo "===== ls -R public ====="
           ls -R public || true
