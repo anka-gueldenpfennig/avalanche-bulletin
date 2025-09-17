@@ -27,7 +27,7 @@ def main():
         print(f"\n=== Building {d.isoformat()} ===", flush=True)
 
         rc = subprocess.call([
-            "python", "bulletin/slf_bulletin.py",
+            "python", "bulletin/ava_bulletin_signage_de.py",
             "--date", d.isoformat(),
             "--out",  str(out_file),
         ])
