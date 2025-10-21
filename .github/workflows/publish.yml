@@ -26,13 +26,13 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install -U pip
-          pip install -r bulletin/requirements.txt
+          pip install -r requirements.txt
 
       - name: Build bulletin (Europe/Zurich)
         env:
           TZ: Europe/Zurich
         run: |
-          python bulletin/ava_bulletin_signage_de.py --date "2025-04-12T08:00:00+01:00" --out output/bulletin.html
+          python scripts/ava_bulletin_signage_de.py --date "2025-04-12T08:00:00+01:00" --out output/bulletin.html
 
       - name: Prepare publish folder
         run: |
