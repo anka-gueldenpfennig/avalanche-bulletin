@@ -32,7 +32,7 @@ jobs:
         env:
           TZ: Europe/Zurich
         run: |
-          python scripts/ava_bulletin_signage_de.py --date "2025-04-12T08:00:00+01:00" --out output/bulletin.html
+          python bulletin/ava_bulletin_signage_de.py --date "2025-04-12T08:00:00+01:00" --out output/bulletin.html
 
       - name: Prepare publish folder
         run: |
