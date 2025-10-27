@@ -2,15 +2,14 @@ name: Build & Publish SLF Bulletins
 
 on:
   schedule:
-    # Three times a day at 07:10, 08:10 and 17:10 in Zürich (cron is UTC: 07:10 & 16:10 in winter. SLF publishes German at 17:00 and again at 8:00 if level is 3 or above)
+    # Three times a day at 07:10, 08:10 and 17:10 in Zürich (cron is UTC: 10 past 6,7,16)
     - cron: "10 6,7,16 * * *"
-  workflow_dispatch: {}   # allow manual run from the Actions tab
+  workflow_dispatch: {}
   push:
-    branches: [ main ]    # also run when you push to main
+    branches: [ main ]
 
 jobs:
-  build-de:
-    name: Build & Publish German Bulletin
+  build-and-publish:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -29,61 +28,28 @@ jobs:
           python -m pip install -U pip
           pip install -r requirements.txt
 
-      - name: Build German bulletin (Europe/Zurich)
+      - name: Build DE and FR bulletins (Europe/Zurich, using today's date)
         env:
           TZ: Europe/Zurich
         run: |
-          python bulletin/ava_bulletin_signage_de.py --date "2025-04-12T08:00:00+01:00" --out output/bulletin.html
+          # Get current local datetime in ISO-8601 (to the minute) with timezone offset
+          TODAY="$(date -Iminutes)"
 
-      - name: Prepare publish folder
-        run: |
-          mkdir -p public/static/images
-          cp -r bulletin/static/images/* public/static/images/ 2>/dev/null || true
-          cp bulletin/output/bulletin.html public/index.html
+          # --- Build DE ---
+          python bulletin/ava_bulletin_signage_de.py --date "$TODAY" --out output/bulletin.html
+          mkdir -p public/de/static/images
+          cp -r bulletin/static/images/* public/de/static/images/ 2>/dev/null || true
+          cp bulletin/output/bulletin.html public/de/index.html
 
-      - name: Publish to GitHub Pages (gh-pages)
+          # --- Build FR ---
+          python bulletin/ava_bulletin_signage_fr.py --date "$TODAY" --out output/bulletin.html
+          mkdir -p public/fr/static/images
+          cp -r bulletin/static/images/* public/fr/static/images/ 2>/dev/null || true
+          cp bulletin/output/bulletin.html public/fr/index.html
+
+      - name: Publish to GitHub Pages (gh-pages branch, /de and /fr)
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: public
           publish_branch: gh-pages
-
-  build-fr:
-    name: Build & Publish French Bulletin
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    needs: build-de  # only run after German one finishes successfully
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Install dependencies
-        run: |
-          python -m pip install -U pip
-          pip install -r requirements.txt
-
-      - name: Build French bulletin (Europe/Zurich)
-        env:
-          TZ: Europe/Zurich
-        run: |
-          python bulletin/ava_bulletin_signage_fr.py --date "2025-04-12T08:00:00+01:00" --out output/bulletin.html
-
-      - name: Prepare publish folder
-        run: |
-          mkdir -p public-fr/static/images
-          cp -r bulletin/static/images/* public-fr/static/images/ 2>/dev/null || true
-          cp bulletin/output/bulletin.html public-fr/index.html
-
-      - name: Publish to GitHub Pages (gh-pages-fr)
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: public-fr
-          publish_branch: gh-pages-fr
