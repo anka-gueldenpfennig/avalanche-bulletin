@@ -33,21 +33,19 @@ jobs:
           TZ: Europe/Zurich
         run: |
           set -e
+          TODAY="$(date -Iminutes)"
 
-          # fresh publish dir
-          rm -rf public
-          mkdir -p public/de/static/images public/fr/static/images
-
-          TODAY="$(date -Iminutes)"  
           # --- Build DE ---
           python bulletin/ava_bulletin_signage_de.py --date "$TODAY" --out bulletin/signage_bulletin_de.html
-          cp -r bulletin/static/images/* ../public/de/static/images/ 2>/dev/null || true
-          cp signage_bulletin_de.html ../public/de/index.html
+          mkdir -p public/de/static/images
+          cp -r bulletin/static/images/* public/de/static/images/ 2>/dev/null || true
+          cp bulletin/signage_bulletin_de.html public/de/index.html
 
           # --- Build FR ---
           python bulletin/ava_bulletin_signage_fr.py --date "$TODAY" --out bulletin/signage_bulletin_fr.html
+          mkdir -p public/fr/static/images
           cp -r bulletin/static/images/* public/fr/static/images/ 2>/dev/null || true
-          cp signage_bulletin_fr.html ../public/fr/index.html
+          cp bulletin/signage_bulletin_fr.html public/fr/index.html
 
       - name: Publish to GitHub Pages (gh-pages branch, /de and /fr)
         uses: peaceiris/actions-gh-pages@v3
