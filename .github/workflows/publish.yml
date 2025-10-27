@@ -32,20 +32,23 @@ jobs:
         env:
           TZ: Europe/Zurich
         run: |
-          # Get current local datetime in ISO-8601 (to the minute) with timezone offset
-          TODAY="$(date -Iminutes)"
+          set -e
+
+          # fresh publish dir
+          rm -rf public
+          mkdir -p public/de/static/images public/fr/static/images
+
+          TODAY="$(date -Iminutes)"   # e.g. 2025-10-27T09:10+01:00
 
           # --- Build DE ---
-          python bulletin/ava_bulletin_signage_de.py --date "$TODAY" --out output/bulletin.html
-          mkdir -p public/de/static/images
+          python bulletin/ava_bulletin_signage_de.py --date "$TODAY" --out bulletin/signage_bulletin_de.html
           cp -r bulletin/static/images/* public/de/static/images/ 2>/dev/null || true
-          cp bulletin/output/bulletin.html public/de/index.html
+          cp bulletin/signage_bulletin_de.html public/de/index.html
 
           # --- Build FR ---
-          python bulletin/ava_bulletin_signage_fr.py --date "$TODAY" --out output/bulletin.html
-          mkdir -p public/fr/static/images
+          python bulletin/ava_bulletin_signage_fr.py --date "$TODAY" --out bulletin/signage_bulletin_fr.html
           cp -r bulletin/static/images/* public/fr/static/images/ 2>/dev/null || true
-          cp bulletin/output/bulletin.html public/fr/index.html
+          cp bulletin/signage_bulletin_fr.html public/fr/index.html
 
       - name: Publish to GitHub Pages (gh-pages branch, /de and /fr)
         uses: peaceiris/actions-gh-pages@v3
