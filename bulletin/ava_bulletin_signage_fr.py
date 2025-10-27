@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
 import hashlib
 from collections import OrderedDict
+from pathlib import Path
 
 
 # METHODS
@@ -549,8 +550,8 @@ else:
     html_output.append("</body></html>")
 
     # Write to file
-    # move one tab in later
-    with open("signage_bulletin_fr.html", "w", encoding="utf-8") as f:
-        f.write("\n".join(html_output))
+    BASE = Path(__file__).resolve().parent
+    out_path = BASE / "signage_bulletin_fr.html"
 
-    print("HTML bulletin written to signage_bulletin_fr.html")
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(html_output))

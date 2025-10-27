@@ -141,6 +141,8 @@ def parse_active_at(s: str) -> datetime:
       - 'YYYY-MM-DD' → builds 08:00 local time that day
       - 'YYYY-MM-DDTHH:MM[:SS][+/-HH:MM]' → parsed as-is (timezone-aware)
     """
+    TZ = ZoneInfo("Europe/Zurich")
+
     if s == "today":
         return datetime.datetime.now(TZ).replace(hour=8, minute=0, second=0, microsecond=0)
 
@@ -555,12 +557,8 @@ else:
     html_output.append("</body></html>")
 
     # Write to file
-    SCRIPT_DIR = Path(__file__).resolve().parent
+    BASE = Path(__file__).resolve().parent
+    out_path = BASE / "signage_bulletin_de.html"
 
-    out_path = Path(args.out)
-    if not out_path.is_absolute():
-        out_path = (SCRIPT_DIR / out_path).resolve()
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-
-    with out_path.open("w", encoding="utf-8") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         f.write("\n".join(html_output))
