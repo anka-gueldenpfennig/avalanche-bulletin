@@ -119,7 +119,7 @@ def _elev_key(elev):
 
 # aspects order for the compass rose icon
 def _aspects_key(aspects):
-    if aspects in (None, [], ['N','NE','E','SE','S','SW','W','NW']):
+    if aspects in (None, [], ['N', 'NO', 'O', 'SO', 'S', 'SW', 'W', 'NW']):
         return ('all',)
     return tuple(aspects)  # keep order to avoid surprise; or use tuple(sorted(aspects))
 
@@ -414,6 +414,17 @@ snow_type = {
     "persistent_weak_layers": "Altschnee"
 }
 
+aspects_dict = {
+    'N': 'N',
+    'NE': 'NO',
+    'E': 'O',
+    'SE': 'SO',
+    'S': 'S',
+    'SW': 'SW',
+    'W': 'W',
+    'NW': 'NW'
+}
+
 subdiv_dict = {
     "neutral": "=",
     "minus": "-",
@@ -444,9 +455,9 @@ resp.raise_for_status()
 data = resp.json()
 
 # Compass config
-ORDER = ['N','NE','E','SE','S','SW','W','NW']
+ORDER = ['N','NO','O','SO','S','SW','W','NW']
 CENTER_ANGLE = {d: 90 - i*45 for i, d in enumerate(ORDER)}
-CARDINALS = {'N','E','S','W'}
+CARDINALS = {'N','O','S','W'}
 
 # get bulletin for Leukerbad - Lötschental region ID
 region_info = None
@@ -508,14 +519,24 @@ else:
             # exposition text + compass icon
             if aspects in (None, [], ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW']):
                 expo_text = "alle Expositionen"
-                aspects = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW']
+                de_asp_list = ['N', 'NO', 'O', 'SO', 'S', 'SW', 'W', 'NW']
+
+# otherwise, make list of aspects while changing letters to correct French ones
 
             else:
-                expo_text = ", ".join(aspects)
+                de_asp_list = []
+                for aspect in aspects:
+                    de_asp = aspects_dict.get(aspect)
+                    if de_asp is None:
+                        de_asp = aspect
 
-            # save compass rose
-            fname = filename_for_expos(aspects, fmt="svg")
-            save_compass(aspects, f"bulletin/static/images/{fname}", fmt="svg")
+                    de_asp_list.append(de_asp)
+
+                expo_text = ", ".join(de_asp_list)
+
+# save compass rose
+            fname = filename_for_expos(de_asp_list, fmt="svg")
+            save_compass(de_asp_list, f"bulletin/static/images/{fname}", fmt="svg")
 
             # group problem types by same elevation/exposition/comment to deduplicate
             groups[k] = {
