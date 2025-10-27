@@ -507,7 +507,7 @@ else:
 
             # save compass rose
             fname = filename_for_expos(fr_asp_list, fmt="svg")
-            save_compass(fr_asp_list, f"static/images/{fname}", fmt="svg")
+            save_compass(fr_asp_list, f"bulletin/static/images/{fname}", fmt="svg")
 
             # group problem types by same elevation/exposition/comment to deduplicate
             groups[k] = {
