@@ -134,8 +134,6 @@ def parse_active_at(s: str) -> datetime:
       - 'YYYY-MM-DD' → builds 08:00 local time that day
       - 'YYYY-MM-DDTHH:MM[:SS][+/-HH:MM]' → parsed as-is (timezone-aware)
     """
-    TZ = ZoneInfo("Europe/Zurich")
-
     if s == "today":
         return datetime.datetime.now(TZ).replace(hour=8, minute=0, second=0, microsecond=0)
 
@@ -443,6 +441,15 @@ aspects_dict = {
 REGION_ID = "CH-4211"  # Leukerbad - Lötschental
 LANG = "fr"
 TZ = ZoneInfo("Europe/Zurich")
+
+# for automation
+parser = argparse.ArgumentParser()
+parser.add_argument("--date", default="today")
+parser.add_argument("--out", default="bulletin/output/bulletin.html")
+args = parser.parse_args()
+
+# figure out date
+ACTIVE_AT = parse_active_at(args.date)
 
 url = f"https://aws.slf.ch/api/bulletin/caaml/{LANG}/geojson"
 params = {"activeAt": ACTIVE_AT}

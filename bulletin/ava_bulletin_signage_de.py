@@ -432,6 +432,11 @@ subdiv_dict = {
     "equal": "="
 }
 
+# Global Config
+REGION_ID = "CH-4211"  # Leukerbad - Lötschental
+LANG = "de"
+TZ = ZoneInfo("Europe/Zurich")
+
 # for automation
 parser = argparse.ArgumentParser()
 parser.add_argument("--date", default="today")
@@ -440,11 +445,6 @@ args = parser.parse_args()
 
 # figure out date
 ACTIVE_AT = parse_active_at(args.date)
-
-# Global Config
-REGION_ID = "CH-4211"  # Leukerbad - Lötschental
-LANG = "de"
-TZ = ZoneInfo("Europe/Zurich")
 
 url = f"https://aws.slf.ch/api/bulletin/caaml/{LANG}/geojson"
 params = {"activeAt": ACTIVE_AT}
