@@ -435,7 +435,6 @@ subdiv_dict = {
 # Global Config
 REGION_ID = "CH-4211"  # Leukerbad - Lötschental
 LANG = "de"
-TZ = ZoneInfo("Europe/Zurich")
 
 # for automation
 parser = argparse.ArgumentParser()

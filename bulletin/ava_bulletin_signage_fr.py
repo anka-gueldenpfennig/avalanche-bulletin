@@ -134,6 +134,8 @@ def parse_active_at(s: str) -> datetime:
       - 'YYYY-MM-DD' → builds 08:00 local time that day
       - 'YYYY-MM-DDTHH:MM[:SS][+/-HH:MM]' → parsed as-is (timezone-aware)
     """
+    TZ = ZoneInfo("Europe/Zurich")
+
     if s == "today":
         return datetime.datetime.now(TZ).replace(hour=8, minute=0, second=0, microsecond=0)
 
@@ -440,7 +442,6 @@ aspects_dict = {
 # Global Config
 REGION_ID = "CH-4211"  # Leukerbad - Lötschental
 LANG = "fr"
-TZ = ZoneInfo("Europe/Zurich")
 
 # for automation
 parser = argparse.ArgumentParser()
