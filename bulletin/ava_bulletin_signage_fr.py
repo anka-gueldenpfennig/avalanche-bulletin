@@ -1,11 +1,14 @@
 import requests
-from datetime import datetime
+import datetime
 import math
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
 import hashlib
 from collections import OrderedDict
+import argparse
+from zoneinfo import ZoneInfo
 from pathlib import Path
+import xml.etree.ElementTree as ET
 
 
 # METHODS
@@ -122,6 +125,28 @@ def is_pure_other(entries):
 
 
 # --- end of grouping methods ---
+
+# handling date input
+def parse_active_at(s: str) -> datetime:
+    """
+    Accepts:
+      - 'today' → returns today at 08:00 in Europe/Zurich
+      - 'YYYY-MM-DD' → builds 08:00 local time that day
+      - 'YYYY-MM-DDTHH:MM[:SS][+/-HH:MM]' → parsed as-is (timezone-aware)
+    """
+    TZ = ZoneInfo("Europe/Zurich")
+
+    if s == "today":
+        return datetime.datetime.now(TZ).replace(hour=8, minute=0, second=0, microsecond=0)
+
+    try:
+        # Full ISO with or without offset
+        return datetime.datetime.fromisoformat(s)
+    except ValueError:
+        # Maybe just a date
+        d = datetime.date.fromisoformat(s)
+        return datetime.datetime(d.year, d.month, d.day, 8, 0, tzinfo=TZ)
+
 # --- build HTML methods ---
 # styles header
 def styles():
@@ -417,7 +442,7 @@ aspects_dict = {
 # Global Config
 REGION_ID = "CH-4211"  # Leukerbad - Lötschental
 LANG = "fr"
-ACTIVE_AT = "2025-10-27T08:00:00+01:00" # 2025-01-22 is a good one if German uses a level 3
+TZ = ZoneInfo("Europe/Zurich")
 
 url = f"https://aws.slf.ch/api/bulletin/caaml/{LANG}/geojson"
 params = {"activeAt": ACTIVE_AT}
