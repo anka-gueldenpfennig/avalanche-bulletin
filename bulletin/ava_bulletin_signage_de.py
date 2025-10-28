@@ -86,7 +86,7 @@ def save_compass(expos, path, fmt="svg", *, bg_transparent=True, dpi=180):
     plt.close(fig)
 
 # define filename for compass rose icon from exposition list
-def filename_for_expos(expos, prefix="compass_", fmt="svg"):
+def filename_for_expos(expos, prefix="compass_de_", fmt="svg"):
     key = ",".join(sorted(e.upper() for e in expos))
     h = hashlib.md5(key.encode()).hexdigest()[:10]
     return f"{prefix}{h}.{fmt}"
@@ -121,7 +121,7 @@ def _elev_key(elev):
 def _aspects_key(aspects):
     if aspects in (None, [], ['N', 'NO', 'O', 'SO', 'S', 'SW', 'W', 'NW']):
         return ('all',)
-    return tuple(aspects)  # keep order to avoid surprise; or use tuple(sorted(aspects))
+    return tuple(aspects)  # keep order to avoid surprise
 
 # tidy comment field for grouping
 def _comment_key(c):
@@ -521,8 +521,7 @@ else:
                 expo_text = "alle Expositionen"
                 de_asp_list = ['N', 'NO', 'O', 'SO', 'S', 'SW', 'W', 'NW']
 
-# otherwise, make list of aspects while changing letters to correct French ones
-
+            # otherwise, make list of aspects while changing letters to correct German ones
             else:
                 de_asp_list = []
                 for aspect in aspects:
@@ -534,7 +533,7 @@ else:
 
                 expo_text = ", ".join(de_asp_list)
 
-# save compass rose
+            # save compass rose
             fname = filename_for_expos(de_asp_list, fmt="svg")
             save_compass(de_asp_list, f"bulletin/static/images/{fname}", fmt="svg")
 
