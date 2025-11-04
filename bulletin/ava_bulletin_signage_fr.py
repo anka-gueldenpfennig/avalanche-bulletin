@@ -155,54 +155,119 @@ def styles():
     <head>
       <meta charset="UTF-8">
       <title>Bulletin d'avalanche</title>
+
+      <!-- link stylesheet here later -->
+      <!-- <link rel="stylesheet" href="https://example.com/bulletin.css"> -->
+
       <style>
-        body {
+        /* =========================
+           Ava Bulletin – Starter CSS
+           Everything is namespaced under .ava-bulletin to override with youengineering CSS
+           ========================= */
+
+        .ava-bulletin {
           font-family: Helvetica, Arial, sans-serif;
           font-size: 16px;
           font-weight: 300;
           line-height: 1.5;
           padding: 20px;
           max-width: 2000px;
-          margin: auto;
+          margin: 0 auto;
+          color: #111;
+          background: #fff;
+          box-sizing: border-box;
         }
-        h1, h2, h3, h4, h5, h6 {
+
+        .ava-title,
+        .ava-bulletin h1,
+        .ava-bulletin h2,
+        .ava-bulletin h3,
+        .ava-bulletin h4,
+        .ava-bulletin h5,
+        .ava-bulletin h6 {
           font-family: Mark, Arial, sans-serif;
           font-weight: 700;
           letter-spacing: .02em;
           margin-top: 1em;
+          margin-bottom: .5em;
         }
-        .section {
-          margin-bottom: 20px;
+
+        /* Layout helpers */
+        .ava-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          margin-bottom: 30px;
         }
-        .danger {
-          font-weight: bold;
+        .ava-header-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+
+        .ava-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 40px;
+          align-items: start;
+          margin-bottom: 30px;
         }
-        .subheading {
-          font-weight: bold;
-          margin-top: 10px;
+        .ava-col { min-width: 0; box-sizing: border-box; }
+
+        .ava-problem { display: flex; align-items: flex-start; gap: 16px; }
+        .ava-problem-meta { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+
+        .ava-chip-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+        .ava-chip { display: inline-block; padding: 2px 8px; border-radius: 12px; background: #f2f2f2; font-weight: 700; white-space: nowrap; }
+
+        .ava-row { display: flex; align-items: center; gap: 10px; }
+
+        .ava-icon        { max-height: 48px; max-width: 48px; flex: 0 0 auto; }
+        .ava-icon--lg    { max-height: 60px; max-width: 60px; }
+        .ava-icon--rose  { max-width: 60px; height: auto; }
+
+        .ava-strong { font-weight: 700; }
+        .ava-problem-text { margin: 0; overflow-wrap: anywhere; word-break: break-word; }
+
+        /* The danger badge keeps SLF colors inline:
+           <span class="ava-danger-badge" style="background-color:#ffff00;color:#000000">…</span> */
+        .ava-danger-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-weight: 700; }
+
+        .ava-updated-at {
+          position: fixed;
+          bottom: 10px;
+          right: 20px;
+          font-size: 0.9em;
+          color: #555;
+          background: transparent;
         }
-        .alert-beacon{
-          position:fixed;
-          top:16px;
-          right:20px;
-          width:16px; height:16px;
-          border-radius:50%;
-          background:#ff3b30;                 /* default red */
+
+        /* Optional alert beacon (namespaced) */
+        .ava-alert-beacon{
+          position: fixed;
+          top: 16px;
+          right: 20px;
+          width: 16px; height: 16px;
+          border-radius: 50%;
+          background: #ff3b30; /* default red */
           box-shadow:
             0 0 0 3px rgba(255,59,48,.25),
             0 0 12px rgba(255,59,48,.6);
-          z-index:9999;
-          animation:beacon-blink 1.2s steps(2, end) infinite; /* ~0.83 Hz (safe) */
+          z-index: 9999;
+          animation: ava-beacon-blink 1.2s steps(2, end) infinite; /* ~0.83 Hz */
         }
 
-        @keyframes beacon-blink{
-          0%,49%   { opacity:1; }
-          50%,100% { opacity:.15; }            /* dim instead of fully off = nicer */
+        @keyframes ava-beacon-blink{
+          0%,49%   { opacity: 1; }
+          50%,100% { opacity: .15; } /* dim instead of fully off */
         }
 
+        /* Simple responsiveness if a narrower screen is used */
+        @media (max-width: 1024px) {
+          .ava-grid { grid-template-columns: 1fr; gap: 24px; }
+          .ava-header { flex-wrap: wrap; }
+        }
       </style>
     </head>
     <body>
+    <div class="ava-bulletin">
     """
 
     return html_styles
@@ -249,32 +314,39 @@ def warning_subdivision(region_info):
 def html_header(mainValue, subdiv_value, warnings, hex_warnings):
     # Top: Main heading
     html_header = []
-    html_header.append("<h1 style='margin:0;'>Bulletin d'avalanche</h1>")
+    html_header.append("<h1 class='ava-title'>Bulletin d'avalanche</h1>")
 
     # turn on warning light when level is 3 or higher (top right corner)
     if mainValue >= 3:
-        html_header.append(f"<div class='alert-beacon alert' aria-hidden='true' title='Warnsignal'></div>")
+        html_header.append(f"<div class='ava-alert-beacon' aria-hidden='true' title='Warnsignal'></div></div>")
 
     # start section: overall danger rating (icon + text)
-    html_header.append(
-        "<div style='display:flex; align-items:center; justify-content:space-between; margin-bottom:30px;'>")
-    html_header.append("<div style='display:flex; align-items:center; gap:10px;'>")
+    html_header.append("<div class='ava-header'>")
+    html_header.append("<div class='ava-header-left'>")
 
     # get warning word in German + matching colour
     german_warning = warnings.get(mainValue, mainValue)
     hex_warning = hex_warnings.get(mainValue, mainValue)
 
     # add icon to html
-    html_header.append(f"<img src='static/images/{mainValue}.png' style='height:60px;' />")
+    html_header.append(
+        f"<img src='static/images/{mainValue}.png' class='ava-icon ava-icon--lg' alt='Pictogramme niveau {mainValue}' />"
+    )
 
     # add warning level to html (with matching colour)
-    if hex_warning == "#ffff00" or hex_warning == "#ccff66":
+    if hex_warning == '#ffff00' or hex_warning == '#ccff66':
         html_header.append(
-            f"<span style='font-size:1.4em; font-weight:700; background-color:{hex_warning}; color:#000000; padding: 2px 6px; border-radius:4px; font-weight:700;'>Niveau de danger: {german_warning} ({mainValue}{subdiv_value})</h2>"
+            f"<span class='ava-danger-badge' "
+            f"style='background-color:{hex_warning}; color:#000000; font-size:1.4em;'>"
+            f"Niveau de danger: {german_warning} ({mainValue}{subdiv_value})"
+            f"</span>"
         )
     else:
         html_header.append(
-            f"<span style='font-size:1.4em; font-weight:700; color:{hex_warning}; font-weight:700;'>Niveau de danger: {german_warning} ({mainValue}{subdiv_value})</h2>"
+            f"<span class='ava-danger-badge' "
+            f"style='color:{hex_warning}; font-size:1.4em;'>"
+            f"Niveau de danger: {german_warning} ({mainValue}{subdiv_value})"
+            f"</span>"
         )
 
     # close warning level + header row
@@ -298,13 +370,13 @@ def render_group_card(g):
             types.append((pt, german))
 
     # --- one card (grid cell) ---
-    html_output.append("<div style='min-width:0; box-sizing:border-box;'>")
+    html_output.append("<div class='ava-col'>")
 
     # inner: left (3+ rows type, altitude, exposition) + right (comment)
-    html_output.append("<div style='display:flex; align-items:flex-start; gap:16px;'>")
+    html_output.append("<div class='ava-problem'>")
 
     # LEFT stack
-    html_output.append("<div style='display:flex; flex-direction:column; gap:8px;'>")
+    html_output.append("<div class='ava-problem-meta'>")
 
     # === Problem type rows (one row per type: icon left, label right) ===
     # Deduplicate & order problem types for consistent output
@@ -316,58 +388,60 @@ def render_group_card(g):
             types.append((pt, german))
 
     for pt, german in types:
-        html_output.append("<div style='display:flex; align-items:center; gap:10px; margin-bottom:6px;'>")
+        html_output.append("<div class='ava-chip-row'>")
 
         # icon (skip for 'no_distinct_avalanche_problem')
-        if pt != "no_distinct_avalanche_problem":
+        if pt != 'no_distinct_avalanche_problem':
             html_output.append(
-                f"<img src='static/images/{pt}.jpg' style='max-height:48px; max-width:48px;' />"
+                f"<img src='static/images/{pt}.jpg' class='ava-icon' alt='{german}' />"
             )
             label = german
         else:
             # keep spacing aligned when there’s no icon
             html_output.append("<div style='width:48px; height:48px; flex:0 0 48px;'></div>")
-            label = "Pas de problème avalancheux particulier"
+            label = 'Pas de problème avalancheux particulier'
 
         # label badge for problem type
-        html_output.append(
-            f"<span style='display:inline-block; padding:2px 8px; border-radius:12px; background:#f2f2f2; font-weight:700;'>{label}</span>"
-        )
+        html_output.append(f"<span class='ava-chip'>{label}</span>")
 
-        html_output.append("</div>")
+        html_output.append("</div>") # /.ava-chip-row
     # === end problem type rows ===
 
     # Row 2: Altitude
-    html_output.append("<div style='display:flex; align-items:center;'>")
+    html_output.append("<div class='ava-row'>")
     if g['mountain_icon']:
         html_output.append(
-            f"<img src='static/images/{g['mountain_icon']}' style='max-height:60px; max-width:60px; margin-right:10px;' />")
+            f"<img src='static/images/{g['mountain_icon']}' class='ava-icon ava-icon--lg' alt='Icône altitude' />"
+        )
     html_output.append(
-        f"<p style='margin:0; overflow-wrap:anywhere; word-break:break-word;'><b style='font-weight:700;'>Plage d'altitude:</b> {g['elev_text']}</p>")
-    html_output.append("</div>")
+        f"<p class='ava-problem-text'><span class='ava-strong'>Plage d'altitude:</span> {g['elev_text']}</p>"
+    )
+    html_output.append("</div>")  # /.ava-row
 
     # Row 3: Exposition
-    html_output.append("<div style='display:flex; align-items:center;'>")
+    html_output.append("<div class='ava-row'>")
     if g['fname']:
         html_output.append(
-            f"<img src='static/images/{g['fname']}' style='max-height:60px; max-width:60px; margin-right:10px;' />")
+            f"<img src='static/images/{g['fname']}' class='ava-icon ava-icon--rose' alt='Rose des expositions' />"
+        )
     html_output.append(
-        f"<p style='margin:0; overflow-wrap:anywhere; word-break:break-word;'><b style='font-weight:700;'>Exposition:</b> {g['expo_text']}</p>")
-    html_output.append("</div>")
+        f"<p class='ava-problem-text'><span class='ava-strong'>Exposition:</span> {g['expo_text']}</p>"
+    )
+    html_output.append("</div>")  # /.ava-row
 
     # close left
-    html_output.append("</div>")
+    html_output.append("</div>")  # /.ava-problem-meta
 
     # RIGHT: comment
-    html_output.append("<div style='flex:1; min-width:140px;'>")
+    html_output.append("<div class='ava-col' style='flex:1; min-width:140px;'>")
     html_output.append(
-        f"<p style='margin:0; overflow-wrap:anywhere; word-break:break-word;'><b style='font-weight:700;'>Description des dangers:</b> {g['comment']}</p>")
-    html_output.append("</div>")
+        f"<p class='ava-problem-text'><span class='ava-strong'>Description des dangers:</span> {g['comment']}</p>"
+    )
+    html_output.append("</div>")  # /.ava-col (right)
 
     # --- close inner + card ---
-    html_output.append("</div>")
-    html_output.append("</div>")
-
+    html_output.append("</div>")  # /.ava-problem
+    html_output.append("</div>")  # /.ava-col (card)
 
 def footer_date(ACTIVE_AT):
     # Format into German-style date/time: dd.mm.yyyy, HH:MM
@@ -375,7 +449,7 @@ def footer_date(ACTIVE_AT):
 
     # Footer note (fixed bottom right)
     html_date = f"""
-    <div style='position:fixed; bottom:10px; right:20px; font-size:0.9em; color:#555;'>
+    <div class='ava-updated-at'>
       Zuletzt aktualisiert: {formatted_date}
     </div>
     """
@@ -561,8 +635,7 @@ else:
         (other_groups if is_pure_other(g["problem_entries"]) else normal_groups).append(g)
 
     # Problems grid container (2 equal columns)
-    html_output.append(
-        "<div style='display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:40px; align-items:start; margin-bottom:30px;'>")
+    html_output.append("<div class='ava-grid'>")
 
     # Render normal groups, then pure 'other'
     for g in normal_groups:
@@ -576,7 +649,7 @@ else:
     html_date = footer_date(ACTIVE_AT)
     html_output.append(html_date)
 
-    html_output.append("</body></html>")
+    html_output.append("</div></body></html>")
 
     # Write to file
     BASE = Path(__file__).resolve().parent
