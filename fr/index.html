@@ -3,113 +3,178 @@
     <head>
       <meta charset="UTF-8">
       <title>Bulletin d'avalanche</title>
+
+      <!-- link stylesheet here later -->
+      <!-- <link rel="stylesheet" href="https://example.com/bulletin.css"> -->
+
       <style>
-        body {
+        /* =========================
+           Ava Bulletin – Starter CSS
+           Everything is namespaced under .ava-bulletin to override with youengineering CSS
+           ========================= */
+
+        .ava-bulletin {
           font-family: Helvetica, Arial, sans-serif;
           font-size: 16px;
           font-weight: 300;
           line-height: 1.5;
           padding: 20px;
           max-width: 2000px;
-          margin: auto;
+          margin: 0 auto;
+          color: #111;
+          background: #fff;
+          box-sizing: border-box;
         }
-        h1, h2, h3, h4, h5, h6 {
+
+        .ava-title,
+        .ava-bulletin h1,
+        .ava-bulletin h2,
+        .ava-bulletin h3,
+        .ava-bulletin h4,
+        .ava-bulletin h5,
+        .ava-bulletin h6 {
           font-family: Mark, Arial, sans-serif;
           font-weight: 700;
           letter-spacing: .02em;
           margin-top: 1em;
+          margin-bottom: .5em;
         }
-        .section {
-          margin-bottom: 20px;
+
+        /* Layout helpers */
+        .ava-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          margin-bottom: 30px;
         }
-        .danger {
-          font-weight: bold;
+        .ava-header-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+
+        .ava-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 40px;
+          align-items: start;
+          margin-bottom: 30px;
         }
-        .subheading {
-          font-weight: bold;
-          margin-top: 10px;
+        .ava-col { min-width: 0; box-sizing: border-box; }
+
+        .ava-problem { display: flex; align-items: flex-start; gap: 16px; }
+        .ava-problem-meta { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+
+        .ava-chip-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+        .ava-chip { display: inline-block; padding: 2px 8px; border-radius: 12px; background: #f2f2f2; font-weight: 700; white-space: nowrap; }
+
+        .ava-row { display: flex; align-items: center; gap: 10px; }
+
+        .ava-icon        { max-height: 48px; max-width: 48px; flex: 0 0 auto; }
+        .ava-icon--lg    { max-height: 60px; max-width: 60px; }
+        .ava-icon--rose  { max-width: 60px; height: auto; }
+
+        .ava-strong { font-weight: 700; }
+        .ava-problem-text { margin: 0; overflow-wrap: anywhere; word-break: break-word; }
+
+        /* The danger badge keeps SLF colors inline:
+           <span class="ava-danger-badge" style="background-color:#ffff00;color:#000000">…</span> */
+        .ava-danger-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-weight: 700; }
+
+        .ava-updated-at {
+          position: fixed;
+          bottom: 10px;
+          right: 20px;
+          font-size: 0.9em;
+          color: #555;
+          background: transparent;
         }
-        .alert-beacon{
-          position:fixed;
-          top:16px;
-          right:20px;
-          width:16px; height:16px;
-          border-radius:50%;
-          background:#ff3b30;                 /* default red */
+
+        /* Optional alert beacon (namespaced) */
+        .ava-alert-beacon{
+          position: fixed;
+          top: 16px;
+          right: 20px;
+          width: 16px; height: 16px;
+          border-radius: 50%;
+          background: #ff3b30; /* default red */
           box-shadow:
             0 0 0 3px rgba(255,59,48,.25),
             0 0 12px rgba(255,59,48,.6);
-          z-index:9999;
-          animation:beacon-blink 1.2s steps(2, end) infinite; /* ~0.83 Hz (safe) */
+          z-index: 9999;
+          animation: ava-beacon-blink 1.2s steps(2, end) infinite; /* ~0.83 Hz */
         }
 
-        @keyframes beacon-blink{
-          0%,49%   { opacity:1; }
-          50%,100% { opacity:.15; }            /* dim instead of fully off = nicer */
+        @keyframes ava-beacon-blink{
+          0%,49%   { opacity: 1; }
+          50%,100% { opacity: .15; } /* dim instead of fully off */
         }
 
+        /* Simple responsiveness if a narrower screen is used */
+        @media (max-width: 1024px) {
+          .ava-grid { grid-template-columns: 1fr; gap: 24px; }
+          .ava-header { flex-wrap: wrap; }
+        }
       </style>
     </head>
     <body>
+    <div class="ava-bulletin">
     
-<h1 style='margin:0;'>Bulletin d'avalanche</h1>
-<div style='display:flex; align-items:center; justify-content:space-between; margin-bottom:30px;'>
-<div style='display:flex; align-items:center; gap:10px;'>
-<img src='static/images/2.png' style='height:60px;' />
-<span style='font-size:1.4em; font-weight:700; background-color:#ffff00; color:#000000; padding: 2px 6px; border-radius:4px; font-weight:700;'>Niveau de danger: limité (2=)</h2>
+<h1 class='ava-title'>Bulletin d'avalanche</h1>
+<div class='ava-header'>
+<div class='ava-header-left'>
+<img src='static/images/2.png' class='ava-icon ava-icon--lg' alt='Pictogramme niveau 2' />
+<span class='ava-danger-badge' style='background-color:#ffff00; color:#000000; font-size:1.4em;'>Niveau de danger: limité (2=)</span>
 </div>
 </div>
-<div style='display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:40px; align-items:start; margin-bottom:30px;'>
-<div style='min-width:0; box-sizing:border-box;'>
-<div style='display:flex; align-items:flex-start; gap:16px;'>
-<div style='display:flex; flex-direction:column; gap:8px;'>
-<div style='display:flex; align-items:center; gap:10px; margin-bottom:6px;'>
-<img src='static/images/wind_slab.jpg' style='max-height:48px; max-width:48px;' />
-<span style='display:inline-block; padding:2px 8px; border-radius:12px; background:#f2f2f2; font-weight:700;'>Neige soufflée</span>
+<div class='ava-grid'>
+<div class='ava-col'>
+<div class='ava-problem'>
+<div class='ava-problem-meta'>
+<div class='ava-chip-row'>
+<img src='static/images/wind_slab.jpg' class='ava-icon' alt='Neige soufflée' />
+<span class='ava-chip'>Neige soufflée</span>
 </div>
-<div style='display:flex; align-items:center; gap:10px; margin-bottom:6px;'>
-<img src='static/images/persistent_weak_layers.jpg' style='max-height:48px; max-width:48px;' />
-<span style='display:inline-block; padding:2px 8px; border-radius:12px; background:#f2f2f2; font-weight:700;'>Neige ancienne</span>
+<div class='ava-chip-row'>
+<img src='static/images/persistent_weak_layers.jpg' class='ava-icon' alt='Neige ancienne' />
+<span class='ava-chip'>Neige ancienne</span>
 </div>
-<div style='display:flex; align-items:center;'>
-<img src='static/images/above_mountain.png' style='max-height:60px; max-width:60px; margin-right:10px;' />
-<p style='margin:0; overflow-wrap:anywhere; word-break:break-word;'><b style='font-weight:700;'>Plage d'altitude:</b> à plus de 2400m</p>
+<div class='ava-row'>
+<img src='static/images/above_mountain.png' class='ava-icon ava-icon--lg' alt='Icône altitude' />
+<p class='ava-problem-text'><span class='ava-strong'>Plage d'altitude:</span> à plus de 2400m</p>
 </div>
-<div style='display:flex; align-items:center;'>
-<img src='static/images/compass_fr_1d4f7bb0c8.svg' style='max-height:60px; max-width:60px; margin-right:10px;' />
-<p style='margin:0; overflow-wrap:anywhere; word-break:break-word;'><b style='font-weight:700;'>Exposition:</b> toutes les expositions</p>
-</div>
-</div>
-<div style='flex:1; min-width:140px;'>
-<p style='margin:0; overflow-wrap:anywhere; word-break:break-word;'><b style='font-weight:700;'>Description des dangers:</b> Les accumulations de neige soufflée des derniers jours constituent le danger principal. Des avalanches peuvent par endroits être déclenchées par des personnes et atteindre une taille moyenne. <br/> En outre, des avalanches peuvent aussi de manière isolée se déclencher dans les couches profondes du manteau neigeux. Ceci particulièrement sur les pentes à l'ombre au-dessus d'environ 2800 m. <br/> Les randonnées demandent un choix prudent des itinéraires. <br/> Le service de prévisions d'avalanches n'a pas beaucoup d'informations actuellement, c'est pourquoi le danger d'avalanche devrait être étudié avec une attention particulière sur le terrain.</p>
+<div class='ava-row'>
+<img src='static/images/compass_fr_1d4f7bb0c8.svg' class='ava-icon ava-icon--rose' alt='Rose des expositions' />
+<p class='ava-problem-text'><span class='ava-strong'>Exposition:</span> toutes les expositions</p>
 </div>
 </div>
-</div>
-<div style='min-width:0; box-sizing:border-box;'>
-<div style='display:flex; align-items:flex-start; gap:16px;'>
-<div style='display:flex; flex-direction:column; gap:8px;'>
-<div style='display:flex; align-items:center; gap:10px; margin-bottom:6px;'>
-<img src='static/images/wet_snow.jpg' style='max-height:48px; max-width:48px;' />
-<span style='display:inline-block; padding:2px 8px; border-radius:12px; background:#f2f2f2; font-weight:700;'>Neige mouillée</span>
-</div>
-<div style='display:flex; align-items:center;'>
-<img src='static/images/above_mountain.png' style='max-height:60px; max-width:60px; margin-right:10px;' />
-<p style='margin:0; overflow-wrap:anywhere; word-break:break-word;'><b style='font-weight:700;'>Plage d'altitude:</b> à plus de 0m</p>
-</div>
-<div style='display:flex; align-items:center;'>
-<img src='static/images/compass_fr_852db9e9f7.svg' style='max-height:60px; max-width:60px; margin-right:10px;' />
-<p style='margin:0; overflow-wrap:anywhere; word-break:break-word;'><b style='font-weight:700;'>Exposition:</b> SE, S, SO</p>
+<div class='ava-col' style='flex:1; min-width:140px;'>
+<p class='ava-problem-text'><span class='ava-strong'>Description des dangers:</span> Les accumulations de neige soufflée des derniers jours constituent le danger principal. Des avalanches peuvent par endroits être déclenchées par des personnes et atteindre une taille moyenne. <br/> En outre, des avalanches peuvent aussi de manière isolée se déclencher dans les couches profondes du manteau neigeux. Ceci particulièrement sur les pentes à l'ombre au-dessus d'environ 2800 m. <br/> Les randonnées demandent un choix prudent des itinéraires. <br/> Le service de prévisions d'avalanches n'a pas beaucoup d'informations actuellement, c'est pourquoi le danger d'avalanche devrait être étudié avec une attention particulière sur le terrain.</p>
 </div>
 </div>
-<div style='flex:1; min-width:140px;'>
-<p style='margin:0; overflow-wrap:anywhere; word-break:break-word;'><b style='font-weight:700;'>Description des dangers:</b> Des avalanches de glissement et coulées humides de plus en plus nombreuses de petite à moyenne taille sont possibles avec le réchauffement diurne et le rayonnement solaire.</p>
+</div>
+<div class='ava-col'>
+<div class='ava-problem'>
+<div class='ava-problem-meta'>
+<div class='ava-chip-row'>
+<img src='static/images/wet_snow.jpg' class='ava-icon' alt='Neige mouillée' />
+<span class='ava-chip'>Neige mouillée</span>
+</div>
+<div class='ava-row'>
+<img src='static/images/above_mountain.png' class='ava-icon ava-icon--lg' alt='Icône altitude' />
+<p class='ava-problem-text'><span class='ava-strong'>Plage d'altitude:</span> à plus de 0m</p>
+</div>
+<div class='ava-row'>
+<img src='static/images/compass_fr_852db9e9f7.svg' class='ava-icon ava-icon--rose' alt='Rose des expositions' />
+<p class='ava-problem-text'><span class='ava-strong'>Exposition:</span> SE, S, SO</p>
+</div>
+</div>
+<div class='ava-col' style='flex:1; min-width:140px;'>
+<p class='ava-problem-text'><span class='ava-strong'>Description des dangers:</span> Des avalanches de glissement et coulées humides de plus en plus nombreuses de petite à moyenne taille sont possibles avec le réchauffement diurne et le rayonnement solaire.</p>
 </div>
 </div>
 </div>
 </div>
 
-    <div style='position:fixed; bottom:10px; right:20px; font-size:0.9em; color:#555;'>
-      Zuletzt aktualisiert: 04.11.2025, 08:28
+    <div class='ava-updated-at'>
+      Zuletzt aktualisiert: 04.11.2025, 16:42
     </div>
     
-</body></html>
+</div></body></html>
