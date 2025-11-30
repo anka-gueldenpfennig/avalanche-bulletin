@@ -4,7 +4,7 @@
   <rdf:RDF>
    <ns2:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-    <dc:date>2025-11-29T17:34:20.457234</dc:date>
+    <dc:date>2025-11-30T07:41:47.265787</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <ns2:Agent>
@@ -23,31 +23,31 @@
   </ns0:g>
   <ns0:g id="axes_1">
    <ns0:g id="patch_2">
-    <ns0:path d="M 74.725235 61.127931  L 83.417449 38.483938  L 71 22.3225  L 58.582551 38.483938  L 67.274765 61.127931  z " clip-path="url(#p3cade5dc77)" style="fill: #9fb7ff; stroke: #333333; stroke-width: 3" />
+    <ns0:path d="M 74.725235 61.127931  L 83.417449 38.483938  L 71 22.3225  L 58.582551 38.483938  L 67.274765 61.127931  z " clip-path="url(#pc06e9dcda2)" style="fill: #9fb7ff; stroke: #333333; stroke-width: 3" />
    </ns0:g>
    <ns0:g id="patch_3">
-    <ns0:path d="M 80.496305 66.604473  L 102.65435 56.739075  L 102.3616 39.4709  L 85.093425 39.17815  L 75.228027 61.336195  z " clip-path="url(#p3cade5dc77)" style="fill: #9fb7ff; stroke: #333333; stroke-width: 3" />
+    <ns0:path d="M 80.496305 66.604473  L 102.65435 56.739075  L 102.3616 39.4709  L 85.093425 39.17815  L 75.228027 61.336195  z " clip-path="url(#pc06e9dcda2)" style="fill: #9fb7ff; stroke: #333333; stroke-width: 3" />
    </ns0:g>
    <ns0:g id="patch_4">
-    <ns0:path d="M 80.704569 74.557735  L 103.348562 83.249949  L 119.51 70.8325  L 103.348562 58.415051  L 80.704569 67.107265  z " clip-path="url(#p3cade5dc77)" style="fill: #9fb7ff; stroke: #333333; stroke-width: 3" />
+    <ns0:path d="M 80.704569 74.557735  L 103.348562 83.249949  L 119.51 70.8325  L 103.348562 58.415051  L 80.704569 67.107265  z " clip-path="url(#pc06e9dcda2)" style="fill: #9fb7ff; stroke: #333333; stroke-width: 3" />
    </ns0:g>
    <ns0:g id="patch_5">
-    <ns0:path d="M 75.228027 80.328805  L 85.093425 102.48685  L 102.3616 102.1941  L 102.65435 84.925925  L 80.496305 75.060527  z " clip-path="url(#p3cade5dc77)" style="fill: #9fb7ff; stroke: #333333; stroke-width: 3" />
+    <ns0:path d="M 75.228027 80.328805  L 85.093425 102.48685  L 102.3616 102.1941  L 102.65435 84.925925  L 80.496305 75.060527  z " clip-path="url(#pc06e9dcda2)" style="fill: #9fb7ff; stroke: #333333; stroke-width: 3" />
    </ns0:g>
    <ns0:g id="patch_6">
-    <ns0:path d="M 67.274765 80.537069  L 58.582551 103.181062  L 71 119.3425  L 83.417449 103.181062  L 74.725235 80.537069  z " clip-path="url(#p3cade5dc77)" style="fill: #e7e7e7; stroke: #333333; stroke-width: 3" />
+    <ns0:path d="M 67.274765 80.537069  L 58.582551 103.181062  L 71 119.3425  L 83.417449 103.181062  L 74.725235 80.537069  z " clip-path="url(#pc06e9dcda2)" style="fill: #e7e7e7; stroke: #333333; stroke-width: 3" />
    </ns0:g>
    <ns0:g id="patch_7">
-    <ns0:path d="M 61.503695 75.060527  L 39.34565 84.925925  L 39.6384 102.1941  L 56.906575 102.48685  L 66.771973 80.328805  z " clip-path="url(#p3cade5dc77)" style="fill: #9fb7ff; stroke: #333333; stroke-width: 3" />
+    <ns0:path d="M 61.503695 75.060527  L 39.34565 84.925925  L 39.6384 102.1941  L 56.906575 102.48685  L 66.771973 80.328805  z " clip-path="url(#pc06e9dcda2)" style="fill: #9fb7ff; stroke: #333333; stroke-width: 3" />
    </ns0:g>
    <ns0:g id="patch_8">
-    <ns0:path d="M 61.295431 67.107265  L 38.651438 58.415051  L 22.49 70.8325  L 38.651438 83.249949  L 61.295431 74.557735  z " clip-path="url(#p3cade5dc77)" style="fill: #9fb7ff; stroke: #333333; stroke-width: 3" />
+    <ns0:path d="M 61.295431 67.107265  L 38.651438 58.415051  L 22.49 70.8325  L 38.651438 83.249949  L 61.295431 74.557735  z " clip-path="url(#pc06e9dcda2)" style="fill: #9fb7ff; stroke: #333333; stroke-width: 3" />
    </ns0:g>
    <ns0:g id="patch_9">
-    <ns0:path d="M 66.771973 61.336195  L 56.906575 39.17815  L 39.6384 39.4709  L 39.34565 56.739075  L 61.503695 66.604473  z " clip-path="url(#p3cade5dc77)" style="fill: #9fb7ff; stroke: #333333; stroke-width: 3" />
+    <ns0:path d="M 66.771973 61.336195  L 56.906575 39.17815  L 39.6384 39.4709  L 39.34565 56.739075  L 61.503695 66.604473  z " clip-path="url(#pc06e9dcda2)" style="fill: #9fb7ff; stroke: #333333; stroke-width: 3" />
    </ns0:g>
    <ns0:g id="patch_10">
-    <ns0:path d="M 71 73.1194  C 71.606493 73.1194 72.188227 72.878438 72.617082 72.449582  C 73.045938 72.020727 73.2869 71.438993 73.2869 70.8325  C 73.2869 70.226007 73.045938 69.644273 72.617082 69.215418  C 72.188227 68.786562 71.606493 68.5456 71 68.5456  C 70.393507 68.5456 69.811773 68.786562 69.382918 69.215418  C 68.954062 69.644273 68.7131 70.226007 68.7131 70.8325  C 68.7131 71.438993 68.954062 72.020727 69.382918 72.449582  C 69.811773 72.878438 70.393507 73.1194 71 73.1194  z " clip-path="url(#p3cade5dc77)" style="fill: #333333; stroke: #333333; stroke-linejoin: miter" />
+    <ns0:path d="M 71 73.1194  C 71.606493 73.1194 72.188227 72.878438 72.617082 72.449582  C 73.045938 72.020727 73.2869 71.438993 73.2869 70.8325  C 73.2869 70.226007 73.045938 69.644273 72.617082 69.215418  C 72.188227 68.786562 71.606493 68.5456 71 68.5456  C 70.393507 68.5456 69.811773 68.786562 69.382918 69.215418  C 68.954062 69.644273 68.7131 70.226007 68.7131 70.8325  C 68.7131 71.438993 68.954062 72.020727 69.382918 72.449582  C 69.811773 72.878438 70.393507 73.1194 71 73.1194  z " clip-path="url(#pc06e9dcda2)" style="fill: #333333; stroke: #333333; stroke-linejoin: miter" />
    </ns0:g>
    <ns0:g id="text_1">
     
@@ -116,7 +116,7 @@
   </ns0:g>
  </ns0:g>
  <ns0:defs>
-  <ns0:clipPath id="p3cade5dc77">
+  <ns0:clipPath id="pc06e9dcda2">
    <ns0:rect x="15.56" y="15.3925" width="110.88" height="110.88" />
   </ns0:clipPath>
  </ns0:defs>
