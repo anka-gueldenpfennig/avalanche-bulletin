@@ -168,7 +168,7 @@ def styles():
 
     <style>
     /* =========================
-     Ava Bulletin – Starter CSS
+     Ava Bulletin – CSS
      ========================= */
 
     :root { 
@@ -709,7 +709,7 @@ else:
     html_date = footer_date(ACTIVE_AT)
     html_output.append(html_date)
 
-    html_output.append("</body></html>")
+    html_output.append("</div></body></html>")
 
     # Write to file
     BASE = Path(__file__).resolve().parent
