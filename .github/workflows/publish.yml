@@ -2,8 +2,10 @@ name: Build & Publish SLF Bulletins
 
 on:
   schedule:
-    # Three times a day at 07:10, 08:10 and 17:10 in Zürich (cron is UTC: 10 past 6,7,16)
-    - cron: "10 6,7,16 * * *"
+    # Three times a day at 07:45, 08:15 and 17:10 in Zürich (cron is UTC: 45, 15, 10 past 6,7,16)
+    - cron: "45 6 * * *"
+    - cron: "15 7 * * *"
+    - cron: "10 16 * * *"
   workflow_dispatch: {}
   push:
     branches: [ main ]

@@ -162,57 +162,174 @@ def styles():
     <head>
       <meta charset="UTF-8">
       <title>Lawinenbulletin</title>
-      <style>
-        body {
-          font-family: Helvetica, Arial, sans-serif;
-          font-size: 16px;
-          font-weight: 300;
-          line-height: 1.5;
-          padding: 20px;
-          max-width: 2000px;
-          margin: auto;
-        }
-        h1, h2, h3, h4, h5, h6 {
-          font-family: Mark, Arial, sans-serif;
-          font-weight: 700;
-          letter-spacing: .02em;
-          margin-top: 1em;
-        }
-        .section {
-          margin-bottom: 20px;
-        }
-        .danger {
-          font-weight: bold;
-        }
-        .subheading {
-          font-weight: bold;
-          margin-top: 10px;
-        }
-        .alert-beacon{
-          position:fixed;
-          top:16px;
-          right:20px;
-          width:16px; height:16px;
-          border-radius:50%;
-          background:#ff3b30;                 /* default red */
-          box-shadow:
-            0 0 0 3px rgba(255,59,48,.25),
-            0 0 12px rgba(255,59,48,.6);
-          z-index:9999;
-          animation:beacon-blink 1.2s steps(2, end) infinite; /* ~0.83 Hz (safe) */
-        }
 
-        @keyframes beacon-blink{
-          0%,49%   { opacity:1; }
-          50%,100% { opacity:.15; }            /* dim instead of fully off = nicer */
-        }
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
 
-      </style>
+    <style>
+    /* =========================
+     Ava Bulletin – Starter CSS
+     ========================= */
+
+    :root { 
+    /* Title size: between 40px and 60px */
+    --ava-title-size: clamp(40px, 5vh, 60px);
+
+    /* Danger badge size: between 22px and 32px */
+    --ava-badge-size: clamp(30px, 2.8vh, 50px);
+
+    /* Body size: between 20px and 30px, depending on viewport height */
+    --ava-body-size: clamp(20px, 1.9vh, 30px);
+    }
+
+    .ava-bulletin {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: var(--ava-body-size);
+    font-weight: 300;
+    line-height: 1.5;
+    padding: 20px 20px 20px 30px;  /* top right bottom left */
+    max-width: 2000px;
+    margin: 0 auto;
+    color: #111;
+    background: #fff;
+    box-sizing: border-box;
+    }
+
+    @media (min-width: 1600px) and (min-height: 900px) {
+        .ava-bulletin {
+            padding: 90px 60px 20px 30px;  /* top right bottom left */
+        }
+    }
+
+    .ava-bulletin .ava-title {
+    /* typography */
+    font-family: 'DM Sans', Arial, sans-serif;
+    font-weight: 700;
+    font-size: var(--ava-title-size);
+    line-height: 1.1;
+    letter-spacing: 0.8px;
+    margin: 0;
+    padding: 0 0 16px 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    }
+
+    .ava-bulletin .ava-danger-badge {
+    font-family: 'DM Sans', Arial, sans-serif;
+    font-weight: 600;           
+    font-size: var(--ava-badge-size);          
+    line-height: 1.5;          
+    letter-spacing: 0.5px;          
+    padding: 4px 10px;          
+    border-radius: 4px;         
+    display: inline-block;
+    }
+
+    .ava-bulletin .ava-problem-text {
+    font-family: 'Nunito Sans', Arial, sans-serif;
+    font-weight: 200;
+    font-size: var(--ava-body-size);
+    letter-spacing: 0.1px;
+    line-height: 1.5;
+    margin: 0;        
+    padding: 0;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    }
+
+    .ava-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .ava-header-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+
+    .ava-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 40px;
+      align-items: start;
+      margin-bottom: 30px;
+    }
+    .ava-col { min-width: 0; box-sizing: border-box; }
+
+    .ava-problem { display: flex; align-items: flex-start; gap: 16px; }
+    .ava-problem-meta { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+
+    .ava-chip-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .ava-chip { display: inline-block; padding: 2px 8px; border-radius: 12px; background: #f2f2f2; font-weight: 700; white-space: nowrap; }
+
+    .ava-row { display: flex; align-items: center; gap: 10px; }
+
+    .ava-icon {
+        max-height: 100px;
+        max-width: 100px;
+        flex: 0 0 100px;
+    }
+
+    .ava-icon-rose {
+        max-width: 100px;
+        height: auto; 
+    }
+
+    .ava-strong { font-weight: 700; }
+
+    /* The danger badge keeps SLF colors inline:
+       <span class="ava-danger-badge" style="background-color:#ffff00;color:#000000">…</span> */
+    .ava-danger-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-weight: 700; }
+
+    .ava-updated-at {
+      font-family: 'Nunito Sans', Arial, sans-serif;
+      font-weight: 200;
+      font-size: 16px;
+      letter-spacing: 0.1px; 
+      line-height: 24px;
+      position: fixed;
+      bottom: 10px;
+      right: 20px;
+      color: #555;
+      background: transparent;
+    }
+
+    /* Optional alert beacon (namespaced) */
+    .ava-alert-beacon{
+      position: fixed;
+      top: 90px;
+      right: 60px;
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      background: #ff3b30; /* default red */
+      box-shadow:
+        0 0 0 3px rgba(255,59,48,.25),
+        0 0 12px rgba(255,59,48,.6);
+      z-index: 9999;
+      animation: ava-beacon-blink 1.2s steps(2, end) infinite; /* ~0.83 Hz */
+    }
+
+    @keyframes ava-beacon-blink{
+      0%,49%   { opacity: 1; }
+      50%,100% { opacity: .15; } /* dim instead of fully off */
+    }
+
+    /* Simple responsiveness if a narrower screen is used */
+    @media (max-width: 1024px) {
+      .ava-grid { grid-template-columns: 1fr; gap: 24px; }
+      .ava-header { flex-wrap: wrap; }
+    }
+    </style>
     </head>
     <body>
+    <div class="ava-bulletin">
     """
 
     return html_styles
+
 
 # find highest warning level in dangerRatings to define overall warning level
 def highest_warning(region_info):
@@ -254,32 +371,37 @@ def warning_subdivision(region_info):
 def html_header(mainValue, warnings, hex_warnings):
     # Top: Main heading
     html_header = []
-    html_header.append("<h4 class = 'pb-8'>Lawinenbulletin</h4>")
+    html_header.append("<h1 class='ava-title'>Lawinenbulletin</h1>")
 
     # turn on warning light when level is 3 or higher (top right corner)
     if mainValue >= 3:
-        html_header.append(f"<div class='alert-beacon alert' aria-hidden='true' title='Warnsignal'></div>")
+        html_header.append("<div class='ava-alert-beacon' aria-hidden='true' title='Warnsignal'></div>")
 
     # start section: overall danger rating (icon + text)
-    html_header.append(
-        "<div style='display:flex; align-items:center; justify-content:space-between; margin-bottom:30px;'>")
-    html_header.append("<div style='display:flex; align-items:center; gap:10px;'>")
+    html_header.append("<div class='ava-header'>")
+    html_header.append("<div class='ava-header-left'>")
 
     # get warning word in German + matching colour
     german_warning = warnings.get(mainValue, mainValue)
     hex_warning = hex_warnings.get(mainValue, mainValue)
 
     # add icon to html
-    html_header.append(f"<img src='static/images/{mainValue}.png' style='height:60px; width:auto'/>")
+    html_header.append(f"<img src='static/images/{mainValue}.png' style='height:120px;' />")
 
     # add warning level to html (with matching colour)
-    if hex_warning == "#ffff00" or hex_warning == "#ccff66":
+    if hex_warning == '#ffff00' or hex_warning == '#ccff66':
         html_header.append(
-            f"<span style='font-size:1.4em; font-weight:700; background-color:{hex_warning}; color:#000000; padding: 2px 6px; border-radius:4px; font-weight:700;'>Gefahrenstufe: {german_warning} ({mainValue}{subdiv_value})</h2>"
+            f"<span class='ava-danger-badge' "
+            f"style='background-color:{hex_warning}; color:#000000'>"
+            f"Gefahrenstufe: {german_warning} ({mainValue}{subdiv_value})"
+            f"</span>"
         )
     else:
         html_header.append(
-            f"<span style='font-size:1.4em; font-weight:700; color:{hex_warning}; font-weight:700;'>Gefahrenstufe: {german_warning} ({mainValue}{subdiv_value})</h2>"
+            f"<span class='ava-danger-badge' "
+            f"style='color:{hex_warning}'>"
+            f"Gefahrenstufe: {german_warning} ({mainValue}{subdiv_value})"
+            f"</span>"
         )
 
     # close warning level + header row
@@ -298,16 +420,17 @@ def render_group_card(g):
     types = []
     for pt, german in g["problem_entries"]:
         if pt not in seen:
-            seen.add(pt); types.append((pt, german))
+            seen.add(pt)
+            types.append((pt, german))
 
     # --- one card (grid cell) ---
-    html_output.append("<div style='min-width:0; box-sizing:border-box;'>")
+    html_output.append("<div class='ava-col'>")
 
     # inner: left (3+ rows type, altitude, exposition) + right (comment)
-    html_output.append("<div style='display:flex; align-items:flex-start; gap:16px;'>")
+    html_output.append("<div class='ava-problem'>")
 
     # LEFT stack
-    html_output.append("<div style='display:flex; flex-direction:column; gap:8px;'>")
+    html_output.append("<div class='ava-problem-meta'>")
 
     # === Problem type rows (one row per type: icon left, label right) ===
     # Deduplicate & order problem types for consistent output
@@ -319,12 +442,12 @@ def render_group_card(g):
             types.append((pt, german))
 
     for pt, german in types:
-        html_output.append("<div style='display:flex; align-items:center; gap:10px; margin-bottom:6px;'>")
+        html_output.append("<div class='ava-chip-row'>")
 
         # icon (skip for 'no_distinct_avalanche_problem')
-        if pt != "no_distinct_avalanche_problem":
+        if pt != 'no_distinct_avalanche_problem':
             html_output.append(
-                f"<img src='static/images/{pt}.jpg' style='max-height:48px; max-width:48px;' />"
+                f"<img src='static/images/{pt}.jpg' class='ava-icon' alt='{german}' />"
             )
             label = german
         else:
@@ -333,34 +456,42 @@ def render_group_card(g):
             label = "Kein ausgeprägtes Lawinenproblem"
 
         # label badge for problem type
-        html_output.append(
-            f"<span style='display:inline-block; padding:2px 8px; border-radius:12px; background:#f2f2f2; font-weight:700;'>{label}</span>"
-        )
+        html_output.append(f"<span class='ava-chip'>{label}</span>")
 
-        html_output.append("</div>")
+        html_output.append("</div>") # /.ava-chip-row
     # === end problem type rows ===
 
     # Row 2: Altitude
-    html_output.append("<div style='display:flex; align-items:center;'>")
+    html_output.append("<div class='ava-chip-row'>")
     if g['mountain_icon']:
-        html_output.append(f"<img src='static/images/{g['mountain_icon']}' style='max-height:60px; max-width:60px; margin-right:10px;' />")
-    html_output.append(f"<p style='margin:0; overflow-wrap:anywhere; word-break:break-word;'><b style='font-weight:700;'>Höhenbereich:</b> {g['elev_text']}</p>")
-    html_output.append("</div>")
+        html_output.append(
+            f"<img src='static/images/{g['mountain_icon']}' class='ava-icon ava-icon'/>"
+        )
+    html_output.append(
+        f"<p class='ava-problem-text'><span class='ava-strong'>Plage d'altitude:</span> {g['elev_text']}</p>"
+    )
+    html_output.append("</div>")  # /.ava-row
 
     # Row 3: Exposition
-    html_output.append("<div style='display:flex; align-items:center;'>")
+    html_output.append("<div class='ava-chip-row'>")
     if g['fname']:
-        html_output.append(f"<img class = 'compass-img' src='static/images/{g['fname']}' style='max-width:60px; max-height:auto; margin-right:10px;' />")
-    html_output.append(f"<p style='margin:0; overflow-wrap:anywhere; word-break:break-word;'><b style='font-weight:700;'>Exposition:</b> {g['expo_text']}</p>")
-    html_output.append("</div>")
+        html_output.append(
+            f"<img src='static/images/{g['fname']}' class='ava-icon ava-icon-rose' />"
+        )
+    html_output.append(
+        f"<p class='ava-problem-text'><span class='ava-strong'>Exposition:</span> {g['expo_text']}</p>"
+    )
+    html_output.append("</div>")  # /.ava-row
 
     # close left
-    html_output.append("</div>")
+    html_output.append("</div>")  # /.ava-problem-meta
 
     # RIGHT: comment
-    html_output.append("<div style='flex:1; min-width:140px;'>")
-    html_output.append(f"<p style='margin:0; overflow-wrap:anywhere; word-break:break-word;'><b style='font-weight:700;'>Gefahrenbeschrieb:</b> {g['comment']}</p>")
-    html_output.append("</div>")
+    html_output.append("<div class='ava-col' style='flex:1; min-width:140px;'>")
+    html_output.append(
+        f"<p class='ava-problem-text'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>"
+    )
+    html_output.append("</div>")  # /.ava-col (right)
 
     # --- close inner + card ---
     html_output.append("</div>")
@@ -509,10 +640,15 @@ else:
                     elev_text = f"über {lower}m";
                     mountain_icon = "above_mountain.png"
                 else:
-                    elev_text = f"{lower}-{upper}m" if lower is not None and upper is not None else "alle Höhenlagen";
+                    if lower is not None and upper is not None:
+                        elev_text = f"{lower}-{upper}m"
+                    elif upper == "0m" or lower == "0m":
+                        elev_text = "alle Höhenlagen"
+                    else:
+                        elev_text = "alle Höhenlagen"
                     mountain_icon = "all_mountain.png"
             else:
-                elev_text = "alle Höhenlagen";
+                elev_text = "alle Höhenlagen"
                 mountain_icon = "all_mountain.png"
 
             # exposition text + compass icon
