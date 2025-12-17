@@ -153,14 +153,14 @@ def styles():
     <html lang="de">
     <head>
       <meta charset="UTF-8">
-      <title>Lawinenbulletin</title>
+      <title>Bulletin d'avalanche</title>
 
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
 
     <style>
     /* =========================
-     Ava Bulletin – Starter CSS
+     Ava Bulletin – CSS
      ========================= */
 
     :root { 

@@ -494,8 +494,8 @@ def render_group_card(g):
     html_output.append("</div>")  # /.ava-col (right)
 
     # --- close inner + card ---
-    html_output.append("</div>")
-    html_output.append("</div>")
+    html_output.append("</div>") # /.ava-problem
+    html_output.append("</div>") # /.ava-col (card)
 
 def footer_date(ACTIVE_AT):
     # Format into German-style date/time: dd.mm.yyyy, HH:MM
@@ -503,7 +503,7 @@ def footer_date(ACTIVE_AT):
 
     # Footer note (fixed bottom right)
     html_date = f"""
-    <div style='position:fixed; bottom:10px; right:20px; font-size:0.9em; color:#555;'>
+    <div class='ava-updated-at'>
       Zuletzt aktualisiert: {formatted_date}
     </div>
     """
@@ -511,7 +511,6 @@ def footer_date(ACTIVE_AT):
     return html_date
 
 # MAIN CODE
-
 # dictionary definitions (translations, warning levels, hex codes for warning level colouring)
 warning_numbers = {
     "low": 1,
@@ -694,8 +693,7 @@ else:
         (other_groups if is_pure_other(g["problem_entries"]) else normal_groups).append(g)
 
     # Problems grid container (2 equal columns)
-    html_output.append(
-        "<div style='display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:40px; align-items:start; margin-bottom:30px;'>")
+    html_output.append("<div class='ava-grid'>")
 
     # Render normal groups, then pure 'other'
     for g in normal_groups:
