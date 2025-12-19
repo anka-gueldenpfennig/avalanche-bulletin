@@ -260,7 +260,7 @@ def styles():
     .ava-col { min-width: 0; box-sizing: border-box; flex: 1 1 auto;}
 
     .ava-problem { display: flex; align-items: flex-start; gap: 8px; }
-    .ava-problem-meta { display: flex; flex-direction: column; gap: 10px; min-width: 0; flex: 0 0 300px; max-width: 300px;}
+    .ava-problem-meta { display: flex; flex-direction: column; gap: 10px; min-width: 0; flex: 0 0 280px; max-width: 280px;}
 
     .ava-chip-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
     .ava-chip { display: inline-block; padding: 2px 8px; border-radius: 12px; background: #f2f2f2; font-weight: 700; white-space: nowrap; }
@@ -487,10 +487,13 @@ def render_group_card(g):
     html_output.append("</div>")  # /.ava-problem-meta
 
     # RIGHT: comment
+    comment = "Schon etwas ältere Triebschneeansammlungen liegen vor allem in Kammlagen, Rinnen und Mulden und allgemein im Hochgebirge. Mit mässigem bis starkem Nordwind entstehen in der Nacht vor allem in Kammlagen kleine Triebschneeansammlungen. Diese sind nur klein. Frische und ältere Triebschneeansammlungen sollten im sehr steilen Gelände vorsichtig beurteilt werden. Nebst der Verschüttungsgefahr sollte vor allem die Mitreiss- und Absturzgefahr beachtet werden. Zudem können sehr vereinzelt Lawinen in bodennahen Schichten ausgelöst werden und mittlere Grösse erreichen. Vorsicht vor allem an extrem steilen Nordhängen oberhalb von rund 2800 m. Der Lawinenwarndienst hat derzeit wenig Informationen aus dem Gelände, weshalb die Lawinengefahr vor Ort besonders gründlich überprüft werden sollte."
+
     html_output.append("<div class='ava-col' style='flex:1; min-width:140px;'>")
-    html_output.append(
-        f"<p class='ava-problem-text'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>"
-    )
+    html_output.append(f"<p class='ava-problem-text'><span class='ava-strong'>Gefahrenbeschrieb:</span>{comment}</p>")
+#    html_output.append(
+#        f"<p class='ava-problem-text'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>"
+#    )
     html_output.append("</div>")  # /.ava-col (right)
 
     # --- close inner + card ---
