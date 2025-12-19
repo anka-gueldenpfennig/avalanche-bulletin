@@ -257,10 +257,10 @@ def styles():
       align-items: start;
       margin-bottom: 30px;
     }
-    .ava-col { min-width: 0; box-sizing: border-box; }
+    .ava-col { min-width: 0; box-sizing: border-box; flex: 1 1 auto; min-width: 0;}
 
     .ava-problem { display: flex; align-items: flex-start; gap: 16px; }
-    .ava-problem-meta { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+    .ava-problem-meta { display: flex; flex-direction: column; gap: 8px; min-width: 0; flex: 0 0 320px; max-width: 320px;}
 
     .ava-chip-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
     .ava-chip { display: inline-block; padding: 2px 8px; border-radius: 12px; background: #f2f2f2; font-weight: 700; white-space: nowrap; }
@@ -453,7 +453,7 @@ def render_group_card(g):
         else:
             # keep spacing aligned when there’s no icon
             html_output.append("<div style='width:48px; height:48px; flex:0 0 48px;'></div>")
-            label = "Kein ausgeprägtes Lawinenproblem"
+            label = "Kein ausgeprägtes<br>Lawinenproblem"
 
         # label badge for problem type
         html_output.append(f"<span class='ava-chip'>{label}</span>")
@@ -468,7 +468,7 @@ def render_group_card(g):
             f"<img src='static/images/{g['mountain_icon']}' class='ava-icon ava-icon'/>"
         )
     html_output.append(
-        f"<p class='ava-problem-text'><span class='ava-strong'>Plage d'altitude:</span> {g['elev_text']}</p>"
+        f"<p class='ava-problem-text'><span class='ava-strong'>Höhenbereich:</span><br>{g['elev_text']}</p>"
     )
     html_output.append("</div>")  # /.ava-row
 
@@ -479,7 +479,7 @@ def render_group_card(g):
             f"<img src='static/images/{g['fname']}' class='ava-icon ava-icon-rose' />"
         )
     html_output.append(
-        f"<p class='ava-problem-text'><span class='ava-strong'>Exposition:</span> {g['expo_text']}</p>"
+        f"<p class='ava-problem-text'><span class='ava-strong'>Exposition:</span><br>{g['expo_text']}</p>"
     )
     html_output.append("</div>")  # /.ava-row
 
