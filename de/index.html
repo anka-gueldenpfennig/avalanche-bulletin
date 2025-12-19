@@ -98,10 +98,10 @@
       align-items: start;
       margin-bottom: 30px;
     }
-    .ava-col { min-width: 0; box-sizing: border-box; }
+    .ava-col { min-width: 0; box-sizing: border-box; flex: 1 1 auto; min-width: 0;}
 
     .ava-problem { display: flex; align-items: flex-start; gap: 16px; }
-    .ava-problem-meta { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+    .ava-problem-meta { display: flex; flex-direction: column; gap: 8px; min-width: 0; flex: 0 0 320px; max-width: 320px;}
 
     .ava-chip-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
     .ava-chip { display: inline-block; padding: 2px 8px; border-radius: 12px; background: #f2f2f2; font-weight: 700; white-space: nowrap; }
@@ -181,15 +181,15 @@
 <div class='ava-problem-meta'>
 <div class='ava-chip-row'>
 <div style='width:48px; height:48px; flex:0 0 48px;'></div>
-<span class='ava-chip'>Kein ausgeprägtes Lawinenproblem</span>
+<span class='ava-chip'>Kein ausgeprägtes<br>Lawinenproblem</span>
 </div>
 <div class='ava-chip-row'>
 <img src='static/images/above_mountain.png' class='ava-icon ava-icon'/>
-<p class='ava-problem-text'><span class='ava-strong'>Plage d'altitude:</span> über 2400m</p>
+<p class='ava-problem-text'><span class='ava-strong'>Höhenbereich:</span><br>über 2400m</p>
 </div>
 <div class='ava-chip-row'>
 <img src='static/images/compass_de_f344a33e75.svg' class='ava-icon ava-icon-rose' />
-<p class='ava-problem-text'><span class='ava-strong'>Exposition:</span> N, NO, O, W, NW</p>
+<p class='ava-problem-text'><span class='ava-strong'>Exposition:</span><br>N, NO, O, W, NW</p>
 </div>
 </div>
 <div class='ava-col' style='flex:1; min-width:140px;'>
@@ -200,7 +200,7 @@
 </div>
 
     <div class='ava-updated-at'>
-      Zuletzt aktualisiert: 19.12.2025, 08:34
+      Zuletzt aktualisiert: 19.12.2025, 10:58
     </div>
     
 </div></body></html>
