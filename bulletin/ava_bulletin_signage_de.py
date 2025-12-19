@@ -260,7 +260,7 @@ def styles():
     .ava-col { min-width: 0; box-sizing: border-box; flex: 1 1 auto;}
 
     .ava-problem { display: flex; align-items: flex-start; gap: 8px; }
-    .ava-problem-meta { display: flex; flex-direction: column; gap: 10px; min-width: 0; flex: 0 0 200px; max-width: 200px;}
+    .ava-problem-meta { display: flex; flex-direction: column; gap: 10px; min-width: 0; flex: 0 0 300px; max-width: 300px;}
 
     .ava-chip-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
     .ava-chip { display: inline-block; padding: 2px 8px; border-radius: 12px; background: #f2f2f2; font-weight: 700; white-space: nowrap; }
