@@ -197,7 +197,7 @@ def styles():
 
     @media (min-height: 700px) {
         .ava-bulletin {
-            padding-top: 120px;
+            padding-top: 60px;
         }
     }
     
@@ -259,7 +259,7 @@ def styles():
     }
     .ava-col { min-width: 0; box-sizing: border-box; flex: 1 1 auto; min-width: 0;}
 
-    .ava-problem { display: flex; align-items: flex-start; gap: 16px; }
+    .ava-problem { display: flex; align-items: flex-start; gap: 8px; }
     .ava-problem-meta { display: flex; flex-direction: column; gap: 8px; min-width: 0; flex: 0 0 320px; max-width: 320px;}
 
     .ava-chip-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
