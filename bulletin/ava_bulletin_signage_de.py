@@ -195,16 +195,12 @@ def styles():
     box-sizing: border-box;
     }
 
-    @media (min-width: 1600px) and (min-height: 900px) {
+    @media (min-height: 700px) {
         .ava-bulletin {
-            padding: 120px 60px 20px 30px;  /* top right bottom left */
+            padding-top: 120px;
         }
     }
     
-    @media (min-height: 700px) {
-      .ava-bulletin { outline: 10px solid lime; }
-    }
-
     .ava-bulletin .ava-title {
     /* typography */
     font-family: 'DM Sans', Arial, sans-serif;
