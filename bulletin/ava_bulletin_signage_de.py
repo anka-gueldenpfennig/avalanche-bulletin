@@ -201,7 +201,7 @@ def styles():
         }
     }
     
-    @media (min-width: 1600px) and (min-height: 900px) {
+    @media (min-height: 700px) {
       .ava-bulletin { outline: 10px solid lime; }
     }
 
