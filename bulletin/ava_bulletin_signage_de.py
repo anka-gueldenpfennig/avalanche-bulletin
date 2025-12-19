@@ -183,7 +183,7 @@ def styles():
     }
 
     .ava-bulletin {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'DM Sans', Arial, sans-serif;
     font-size: var(--ava-body-size);
     font-weight: 300;
     line-height: 1.5;
@@ -197,7 +197,7 @@ def styles():
 
     @media (min-width: 1600px) and (min-height: 900px) {
         .ava-bulletin {
-            padding: 90px 60px 20px 30px;  /* top right bottom left */
+            padding: 120px 60px 20px 30px;  /* top right bottom left */
         }
     }
 
@@ -468,7 +468,7 @@ def render_group_card(g):
             f"<img src='static/images/{g['mountain_icon']}' class='ava-icon ava-icon'/>"
         )
     html_output.append(
-        f"<p class='ava-problem-text'><span class='ava-strong'>Höhenbereich TEST:</span><br>{g['elev_text']}</p>"
+        f"<p class='ava-problem-text'><span class='ava-strong'>Höhenbereich:</span><br>{g['elev_text']}</p>"
     )
     html_output.append("</div>")  # /.ava-row
 
