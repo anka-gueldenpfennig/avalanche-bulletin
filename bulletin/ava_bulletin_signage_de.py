@@ -200,6 +200,10 @@ def styles():
             padding: 120px 60px 20px 30px;  /* top right bottom left */
         }
     }
+    
+    @media (min-width: 1600px) and (min-height: 900px) {
+      .ava-bulletin { outline: 10px solid lime; }
+    }
 
     .ava-bulletin .ava-title {
     /* typography */
