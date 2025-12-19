@@ -8,7 +8,7 @@ on:
     - cron: "10 16 * * *"
   workflow_dispatch: {}
   push:
-    branches: [ main ]
+    branches: [ main, test-html ]
 
 jobs:
   build-and-publish:
