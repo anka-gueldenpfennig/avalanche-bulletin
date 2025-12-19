@@ -468,7 +468,7 @@ def render_group_card(g):
             f"<img src='static/images/{g['mountain_icon']}' class='ava-icon ava-icon'/>"
         )
     html_output.append(
-        f"<p class='ava-problem-text'><span class='ava-strong'>Höhenbereich:</span><br>{g['elev_text']}</p>"
+        f"<p class='ava-problem-text'><span class='ava-strong'>Höhenbereich TEST:</span><br>{g['elev_text']}</p>"
     )
     html_output.append("</div>")  # /.ava-row
 
