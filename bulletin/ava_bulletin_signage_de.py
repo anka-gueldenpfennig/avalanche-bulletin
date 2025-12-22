@@ -493,20 +493,21 @@ def render_group_card(g):
     html_output.append("</div>")  # /.ava-problem-meta
 
     # RIGHT: comment
-    comment = "Test comment. Schon etwas ältere Triebschneeansammlungen liegen vor allem in Kammlagen, Rinnen und Mulden und allgemein im Hochgebirge. Mit mässigem bis starkem Nordwind entstehen in der Nacht vor allem in Kammlagen kleine Triebschneeansammlungen. Diese sind nur klein. Frische und ältere Triebschneeansammlungen sollten im sehr steilen Gelände vorsichtig beurteilt werden. Nebst der Verschüttungsgefahr sollte vor allem die Mitreiss- und Absturzgefahr beachtet werden. Zudem können sehr vereinzelt Lawinen in bodennahen Schichten ausgelöst werden und mittlere Grösse erreichen. Vorsicht vor allem an extrem steilen Nordhängen oberhalb von rund 2800 m. Der Lawinenwarndienst hat derzeit wenig Informationen aus dem Gelände, weshalb die Lawinengefahr vor Ort besonders gründlich überprüft werden sollte."
     html_output.append("<div class='ava-col' style='flex:1; min-width:140px;'>")
 
     # conditional smaller font for long comments
-    if len(comment) > 550:
-        html_output.append(f"<p class='ava-problem-text' style='font-size:16px; line-height:1.4;'><span class='ava-strong'>Gefahrenbeschrieb:</span>{comment}</p>")
+    if len({g['comment']}) > 700:
+        html_output.append(f"<p class='ava-problem-text' style='font-size:16px; line-height:1.4;'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>")
         print("long comment")
 
+    # still smaller for mid length comments
+    elif len({g['comment']}) > 550:
+        html_output.append(f"<p class='ava-problem-text' style='font-size:18px; line-height:1.4;'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>")
+
+    # standard for short/normal comments
     else:
-        html_output.append(f"<p class='ava-problem-text'><span class='ava-strong'>Gefahrenbeschrieb:</span>{comment}</p>")
+        html_output.append(f"<p class='ava-problem-text'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>")
         print("short comment")
-#    html_output.append(
-#        f"<p class='ava-problem-text'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>"
-#    )
 
     html_output.append("</div>")  # /.ava-col (right)
 
