@@ -198,8 +198,9 @@ def styles():
     font-size: var(--ava-body-size);
     font-weight: 300;
     line-height: 1.5;
-    padding: 20px 20px 20px 30px;  /* top right bottom left */
+    padding: 40px;  /* top right bottom left */
     max-width: 2000px;
+    max-height: 100vh;
     margin: 0 auto;
     color: #111;
     background: #fff;
