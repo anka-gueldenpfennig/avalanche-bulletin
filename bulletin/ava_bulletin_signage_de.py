@@ -208,7 +208,6 @@ def styles():
     }
  
     .ava-bulletin .ava-title {
-    /* typography */
     font-family: 'DM Sans', Arial, sans-serif;
     font-weight: 700;
     font-size: var(--ava-title-size);
@@ -507,7 +506,6 @@ def render_group_card(g):
     # standard for short/normal comments
     else:
         html_output.append(f"<p class='ava-problem-text'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>")
-        print("short comment")
 
     html_output.append("</div>")  # /.ava-col (right)
 
