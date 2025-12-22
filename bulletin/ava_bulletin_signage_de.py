@@ -178,8 +178,8 @@ def styles():
     /* Danger badge size: between 22px and 32px */
     --ava-badge-size: clamp(30px, 2.8vh, 50px);
 
-    /* Body size: between 15px and 20px, depending on viewport height */
-    --ava-body-size: clamp(15px, 1.9vh, 20px);
+    /* Body size: between 20px and 30px, depending on viewport height */
+    --ava-body-size: clamp(20px, 1.9vh, 30px);
     }
     
     html, body {
@@ -494,12 +494,18 @@ def render_group_card(g):
 
     # RIGHT: comment
     comment = "Test comment. Schon etwas ältere Triebschneeansammlungen liegen vor allem in Kammlagen, Rinnen und Mulden und allgemein im Hochgebirge. Mit mässigem bis starkem Nordwind entstehen in der Nacht vor allem in Kammlagen kleine Triebschneeansammlungen. Diese sind nur klein. Frische und ältere Triebschneeansammlungen sollten im sehr steilen Gelände vorsichtig beurteilt werden. Nebst der Verschüttungsgefahr sollte vor allem die Mitreiss- und Absturzgefahr beachtet werden. Zudem können sehr vereinzelt Lawinen in bodennahen Schichten ausgelöst werden und mittlere Grösse erreichen. Vorsicht vor allem an extrem steilen Nordhängen oberhalb von rund 2800 m. Der Lawinenwarndienst hat derzeit wenig Informationen aus dem Gelände, weshalb die Lawinengefahr vor Ort besonders gründlich überprüft werden sollte."
-
     html_output.append("<div class='ava-col' style='flex:1; min-width:140px;'>")
-    html_output.append(f"<p class='ava-problem-text'><span class='ava-strong'>Gefahrenbeschrieb:</span>{comment}</p>")
+
+    # conditional smaller font for long comments
+    if len(comment) > 550:
+        html_output.append(f"<p class='ava-problem-text' style='font-size:24px; line-height:1.4;'><span class='ava-strong'>Gefahrenbeschrieb:</span>{comment}</p>")
+
+    else:
+        html_output.append(f"<p class='ava-problem-text'><span class='ava-strong'>Gefahrenbeschrieb:</span>{comment}</p>")
 #    html_output.append(
 #        f"<p class='ava-problem-text'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>"
 #    )
+    
     html_output.append("</div>")  # /.ava-col (right)
 
     # --- close inner + card ---
