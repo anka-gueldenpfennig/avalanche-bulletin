@@ -181,26 +181,30 @@ def styles():
     /* Body size: between 20px and 30px, depending on viewport height */
     --ava-body-size: clamp(20px, 1.9vh, 30px);
     }
+    
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    
+    body {
+      display: flex;
+      justify-content: center;  /* horizontal center */
+      align-items: center;      /* vertical center */
+    }
 
     .ava-bulletin {
     font-family: 'DM Sans', Arial, sans-serif;
     font-size: var(--ava-body-size);
     font-weight: 300;
     line-height: 1.5;
-    padding: 20px 20px 20px 30px;  /* top right bottom left */
     max-width: 2000px;
     margin: 0 auto;
     color: #111;
     background: #fff;
     box-sizing: border-box;
     }
-
-    @media (min-height: 700px) {
-        .ava-bulletin {
-            padding-top: 60px;
-        }
-    }
-    
+ 
     .ava-bulletin .ava-title {
     /* typography */
     font-family: 'DM Sans', Arial, sans-serif;
