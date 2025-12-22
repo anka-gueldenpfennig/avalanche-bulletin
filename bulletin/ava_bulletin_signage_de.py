@@ -499,13 +499,15 @@ def render_group_card(g):
     # conditional smaller font for long comments
     if len(comment) > 550:
         html_output.append(f"<p class='ava-problem-text' style='font-size:24px; line-height:1.4;'><span class='ava-strong'>Gefahrenbeschrieb:</span>{comment}</p>")
+        print("long comment")
 
     else:
         html_output.append(f"<p class='ava-problem-text'><span class='ava-strong'>Gefahrenbeschrieb:</span>{comment}</p>")
+        print("short comment")
 #    html_output.append(
 #        f"<p class='ava-problem-text'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>"
 #    )
-    
+
     html_output.append("</div>")  # /.ava-col (right)
 
     # --- close inner + card ---
