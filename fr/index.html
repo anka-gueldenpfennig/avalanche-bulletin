@@ -13,8 +13,8 @@
      ========================= */
 
     :root { 
-    /* Title size: between 40px and 60px */
-    --ava-title-size: clamp(40px, 5vh, 60px);
+    /* Title size: between 50px and 70px */
+    --ava-title-size: clamp(50px, 5vh, 70px);
 
     /* Danger badge size: between 22px and 32px */
     --ava-badge-size: clamp(30px, 2.8vh, 50px);
@@ -22,28 +22,33 @@
     /* Body size: between 20px and 30px, depending on viewport height */
     --ava-body-size: clamp(20px, 1.9vh, 30px);
     }
+    
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    
+    body {
+      display: flex;
+      justify-content: center;  /* horizontal center */
+      align-items: center;      /* vertical center */
+    }
 
     .ava-bulletin {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'DM Sans', Arial, sans-serif;
     font-size: var(--ava-body-size);
     font-weight: 300;
     line-height: 1.5;
-    padding: 20px 20px 20px 30px;  /* top right bottom left */
+    padding: 40px;  /* top right bottom left */
     max-width: 2000px;
+    max-height: 100vh;
     margin: 0 auto;
     color: #111;
     background: #fff;
     box-sizing: border-box;
     }
 
-    @media (min-width: 1600px) and (min-height: 900px) {
-        .ava-bulletin {
-            padding: 90px 60px 20px 30px;  /* top right bottom left */
-        }
-    }
-
     .ava-bulletin .ava-title {
-    /* typography */
     font-family: 'DM Sans', Arial, sans-serif;
     font-weight: 700;
     font-size: var(--ava-title-size);
@@ -98,10 +103,10 @@
       align-items: start;
       margin-bottom: 30px;
     }
-    .ava-col { min-width: 0; box-sizing: border-box; }
+    .ava-col { min-width: 0; box-sizing: border-box; flex: 1 1 auto;}
 
-    .ava-problem { display: flex; align-items: flex-start; gap: 16px; }
-    .ava-problem-meta { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+    .ava-problem { display: flex; align-items: flex-start; gap: 8px; }
+    .ava-problem-meta { display: flex; flex-direction: column; gap: 10px; min-width: 0; flex: 0 0 280px; max-width: 280px;}
 
     .ava-chip-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
     .ava-chip { display: inline-block; padding: 2px 8px; border-radius: 12px; background: #f2f2f2; font-weight: 700; white-space: nowrap; }
@@ -120,7 +125,7 @@
     }
 
     .ava-strong { font-weight: 700; }
-
+    
     /* The danger badge keeps SLF colors inline:
        <span class="ava-danger-badge" style="background-color:#ffff00;color:#000000">…</span> */
     .ava-danger-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-weight: 700; }
@@ -193,14 +198,14 @@
 </div>
 </div>
 <div class='ava-col' style='flex:1; min-width:140px;'>
-<p class='ava-problem-text'><span class='ava-strong'>Description des dangers:</span> Des accumulations de neige soufflée en général petites se sont formées avec le vent de sud fort en altitude. Celles-ci devraient être évaluées avec prudence en terrain très raide. Des avalanches sont plutôt petites. A côté du danger d'ensevelissement, il faut aussi penser au danger d'être emporté et de chuter. <br/> Un choix prudent des itinéraires est approprié.</p>
+<p class='ava-problem-text'><span class='ava-strong'>Gefahrenbeschrieb:</span> Des accumulations de neige soufflée en général petites se sont formées avec le vent de sud fort en altitude. Celles-ci devraient être évaluées avec prudence en terrain très raide. Des avalanches sont plutôt petites. A côté du danger d'ensevelissement, il faut aussi penser au danger d'être emporté et de chuter. <br/> Un choix prudent des itinéraires est approprié.</p>
 </div>
 </div>
 </div>
 </div>
 
     <div class='ava-updated-at'>
-      Dernière mise à jour: 22.12.2025, 16:44
+      Dernière mise à jour: 22.12.2025, 16:50
     </div>
     
 </div></body></html>
