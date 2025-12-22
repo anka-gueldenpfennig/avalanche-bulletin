@@ -24,7 +24,7 @@
     }
 
     .ava-bulletin {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'DM Sans', Arial, sans-serif;
     font-size: var(--ava-body-size);
     font-weight: 300;
     line-height: 1.5;
@@ -36,12 +36,12 @@
     box-sizing: border-box;
     }
 
-    @media (min-width: 1600px) and (min-height: 900px) {
+    @media (min-height: 700px) {
         .ava-bulletin {
-            padding: 90px 60px 20px 30px;  /* top right bottom left */
+            padding-top: 60px;
         }
     }
-
+    
     .ava-bulletin .ava-title {
     /* typography */
     font-family: 'DM Sans', Arial, sans-serif;
@@ -98,10 +98,10 @@
       align-items: start;
       margin-bottom: 30px;
     }
-    .ava-col { min-width: 0; box-sizing: border-box; }
+    .ava-col { min-width: 0; box-sizing: border-box; flex: 1 1 auto;}
 
-    .ava-problem { display: flex; align-items: flex-start; gap: 16px; }
-    .ava-problem-meta { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+    .ava-problem { display: flex; align-items: flex-start; gap: 8px; }
+    .ava-problem-meta { display: flex; flex-direction: column; gap: 10px; min-width: 0; flex: 0 0 280px; max-width: 280px;}
 
     .ava-chip-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
     .ava-chip { display: inline-block; padding: 2px 8px; border-radius: 12px; background: #f2f2f2; font-weight: 700; white-space: nowrap; }
@@ -185,22 +185,22 @@
 </div>
 <div class='ava-chip-row'>
 <img src='static/images/above_mountain.png' class='ava-icon ava-icon'/>
-<p class='ava-problem-text'><span class='ava-strong'>Plage d'altitude:</span> über 2400m</p>
+<p class='ava-problem-text'><span class='ava-strong'>Höhenbereich:</span><br>über 2400m</p>
 </div>
 <div class='ava-chip-row'>
 <img src='static/images/compass_de_f344a33e75.svg' class='ava-icon ava-icon-rose' />
-<p class='ava-problem-text'><span class='ava-strong'>Exposition:</span> N, NO, O, W, NW</p>
+<p class='ava-problem-text'><span class='ava-strong'>Exposition:</span><br>N, NO, O, W, NW</p>
 </div>
 </div>
 <div class='ava-col' style='flex:1; min-width:140px;'>
-<p class='ava-problem-text'><span class='ava-strong'>Gefahrenbeschrieb:</span> Mit starkem Südwind entstanden in der Höhe meist kleine Triebschneeansammlungen. Diese sollten im sehr steilen Gelände vorsichtig beurteilt werden. Lawinen sind eher klein. Nebst der Verschüttungsgefahr sollte auch die Mitreiss- und Absturzgefahr beachtet werden. <br/> Eine vorsichtige Routenwahl ist angebracht.</p>
+<p class='ava-problem-text'><span class='ava-strong'>Gefahrenbeschrieb:</span>Schon etwas ältere Triebschneeansammlungen liegen vor allem in Kammlagen, Rinnen und Mulden und allgemein im Hochgebirge. Mit mässigem bis starkem Nordwind entstehen in der Nacht vor allem in Kammlagen kleine Triebschneeansammlungen. Diese sind nur klein. Frische und ältere Triebschneeansammlungen sollten im sehr steilen Gelände vorsichtig beurteilt werden. Nebst der Verschüttungsgefahr sollte vor allem die Mitreiss- und Absturzgefahr beachtet werden. Zudem können sehr vereinzelt Lawinen in bodennahen Schichten ausgelöst werden und mittlere Grösse erreichen. Vorsicht vor allem an extrem steilen Nordhängen oberhalb von rund 2800 m. Der Lawinenwarndienst hat derzeit wenig Informationen aus dem Gelände, weshalb die Lawinengefahr vor Ort besonders gründlich überprüft werden sollte.</p>
 </div>
 </div>
 </div>
 </div>
 
     <div class='ava-updated-at'>
-      Zuletzt aktualisiert: 22.12.2025, 08:37
+      Zuletzt aktualisiert: 22.12.2025, 15:34
     </div>
     
 </div></body></html>
