@@ -490,7 +490,7 @@ def render_group_card(g):
         print("long comment")
 
     # still smaller for mid length comments
-    elif len({g['comment']}) > 550:
+    elif len({g['comment']}) > 500:
         html_output.append(f"<p class='ava-problem-text' style='font-size:18px; line-height:1.4;'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>")
 
     # standard for short/normal comments
