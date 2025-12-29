@@ -79,10 +79,8 @@ def save_compass(expos, path, fmt="svg", *, bg_transparent=True, dpi=180):
     kw = dict(bbox_inches="tight", pad_inches=0.01)
     if fmt.lower() == "svg":
         fig.savefig(path, format="svg", transparent=bg_transparent, **kw)
-        strip_svg_size(path)
     else:
         fig.savefig(path, format=fmt, dpi=dpi, transparent=bg_transparent, **kw)
-        strip_svg_size(path)
     plt.close(fig)
 
 # define filename for compass rose icon from exposition list
