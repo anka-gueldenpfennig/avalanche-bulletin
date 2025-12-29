@@ -38,7 +38,7 @@ def draw_compass(expos, ax=None, *,
                  tip_len_diag=0.28, tip_len_card=0.40,  # diagonals vs cardinals
                  face_on="#9fb7ff", face_off="#e7e7e7",
                  edge="#333333", lw=3.0,
-                 label_size=16, label_offset=1.8,
+                 label_size=21, label_offset=1.6,
                  title=None):
     expos = {e.upper() for e in expos}
     if ax is None:

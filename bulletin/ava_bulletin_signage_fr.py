@@ -448,7 +448,7 @@ def render_group_card(g):
         else:
             # keep spacing aligned when there’s no icon
             html_output.append("<div style='width:48px; height:48px; flex:0 0 48px;'></div>")
-            label = 'Pas de problème avalancheux particulier'
+            label = 'Pas de problème<br>avalancheux particulier'
 
         # label badge for problem type
         html_output.append(f"<span class='ava-chip'>{label}</span>")
