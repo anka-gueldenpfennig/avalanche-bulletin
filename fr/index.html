@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+    <html lang="de">
+    <head>
+      <meta charset="UTF-8">
+      <title>Bulletin d'avalanche</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+    /* =========================
+     Ava Bulletin – CSS
+     ========================= */
+
+    :root { 
+    /* Title size: between 50px and 70px */
+    --ava-title-size: clamp(50px, 5vh, 70px);
+
+    /* Danger badge size: between 22px and 32px */
+    --ava-badge-size: clamp(30px, 2.8vh, 50px);
+
+    /* Body size: between 20px and 30px, depending on viewport height */
+    --ava-body-size: clamp(20px, 1.9vh, 30px);
+    }
+    
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    
+    body {
+      display: flex;
+      justify-content: center;  /* horizontal center */
+      align-items: center;      /* vertical center */
+    }
+
+    .ava-bulletin {
+    font-family: 'DM Sans', Arial, sans-serif;
+    font-size: var(--ava-body-size);
+    font-weight: 300;
+    line-height: 1.5;
+    padding: 40px;  /* top right bottom left */
+    max-width: 2000px;
+    max-height: 100vh;
+    margin: 0 auto;
+    color: #111;
+    background: #fff;
+    box-sizing: border-box;
+    }
+
+    .ava-bulletin .ava-title {
+    font-family: 'DM Sans', Arial, sans-serif;
+    font-weight: 700;
+    font-size: var(--ava-title-size);
+    line-height: 1.1;
+    letter-spacing: 0.8px;
+    margin: 0;
+    padding: 0 0 16px 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    }
+
+    .ava-bulletin .ava-danger-badge {
+    font-family: 'DM Sans', Arial, sans-serif;
+    font-weight: 600;           
+    font-size: var(--ava-badge-size);          
+    line-height: 1.5;          
+    letter-spacing: 0.5px;          
+    padding: 4px 10px;          
+    border-radius: 4px;         
+    display: inline-block;
+    }
+
+    .ava-bulletin .ava-problem-text {
+    font-family: 'Nunito Sans', Arial, sans-serif;
+    font-weight: 200;
+    font-size: var(--ava-body-size);
+    letter-spacing: 0.1px;
+    line-height: 1.5;
+    margin: 0;        
+    padding: 0;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    }
+
+    .ava-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .ava-header-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+
+    .ava-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 40px;
+      align-items: start;
+      margin-bottom: 30px;
+    }
+    .ava-col { min-width: 0; box-sizing: border-box; flex: 1 1 auto;}
+
+    .ava-problem { display: flex; align-items: flex-start; gap: 8px; }
+    .ava-problem-meta { display: flex; flex-direction: column; gap: 10px; min-width: 0; flex: 0 0 280px; max-width: 280px;}
+
+    .ava-chip-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .ava-chip { display: inline-block; padding: 2px 8px; border-radius: 12px; background: #f2f2f2; font-weight: 700; white-space: nowrap; }
+
+    .ava-row { display: flex; align-items: center; gap: 10px; }
+
+    .ava-icon {
+        max-height: 100px;
+        max-width: 100px;
+        flex: 0 0 100px;
+    }
+
+    .ava-icon-rose {
+        max-width: 100px;
+        height: auto; 
+    }
+
+    .ava-strong { font-weight: 700; }
+    
+    /* The danger badge keeps SLF colors inline:
+       <span class="ava-danger-badge" style="background-color:#ffff00;color:#000000">…</span> */
+    .ava-danger-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-weight: 700; }
+
+    .ava-updated-at {
+      font-family: 'Nunito Sans', Arial, sans-serif;
+      font-weight: 200;
+      font-size: 16px;
+      letter-spacing: 0.1px; 
+      line-height: 24px;
+      position: fixed;
+      bottom: 10px;
+      right: 20px;
+      color: #555;
+      background: transparent;
+    }
+
+    /* Optional alert beacon (namespaced) */
+    .ava-alert-beacon{
+      position: fixed;
+      top: 90px;
+      right: 60px;
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      background: #ff3b30; /* default red */
+      box-shadow:
+        0 0 0 3px rgba(255,59,48,.25),
+        0 0 12px rgba(255,59,48,.6);
+      z-index: 9999;
+      animation: ava-beacon-blink 1.2s steps(2, end) infinite; /* ~0.83 Hz */
+    }
+
+    @keyframes ava-beacon-blink{
+      0%,49%   { opacity: 1; }
+      50%,100% { opacity: .15; } /* dim instead of fully off */
+    }
+
+    /* Simple responsiveness if a narrower screen is used */
+    @media (max-width: 1024px) {
+      .ava-grid { grid-template-columns: 1fr; gap: 24px; }
+      .ava-header { flex-wrap: wrap; }
+    }
+    </style>
+    </head>
+    <body>
+    <div class="ava-bulletin">
+    
+<h1 class='ava-title'>Bulletin d'avalanche</h1>
+<div class='ava-header'>
+<div class='ava-header-left'>
+<img src='static/images/2.png' style='height:120px;' />
+<span class='ava-danger-badge' style='background-color:#ffff00; color:#000000;'>Niveau de danger: limité (2-)</span>
+</div>
+</div>
+<div class='ava-grid'>
+<div class='ava-col'>
+<div class='ava-problem'>
+<div class='ava-problem-meta'>
+<div class='ava-chip-row'>
+<img src='static/images/wind_slab.jpg' class='ava-icon' alt='Neige soufflée' />
+<span class='ava-chip'>Neige soufflée</span>
+</div>
+<div class='ava-chip-row'>
+<img src='static/images/above_mountain.png' class='ava-icon ava-icon' />
+<p class='ava-problem-text'><span class='ava-strong'>Plage d'altitude:</span> à plus de 2400m</p>
+</div>
+<div class='ava-chip-row'>
+<img src='static/images/compass_fr_883e559ba4.svg' class='ava-icon ava-icon-rose' />
+<p class='ava-problem-text'><span class='ava-strong'>Exposition:</span> N, NE, E, SE, NO</p>
+</div>
+</div>
+<div class='ava-col' style='flex:1; min-width:140px;'>
+<p class='ava-problem-text'><span class='ava-strong'>Gefahrenbeschrieb:</span> Des accumulations de neige soufflée bien visibles se sont formées avec le vent partiellement fort dans les derniers jours en altitude. Celles-ci sont plutôt petites mais déclenchables de manière isolée. Les accumulations de neige soufflée devraient être évaluées avec prudence en terrain très raide. A côté du danger d'ensevelissement, il faut aussi penser au danger d'être emporté et de chuter.</p>
+</div>
+</div>
+</div>
+</div>
+
+    <div class='ava-updated-at'>
+      Dernière mise à jour: 06.01.2026, 10:06
+    </div>
+    
+</div></body></html>
