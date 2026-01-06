@@ -165,86 +165,47 @@ def styles():
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
 
     <style>
-    /* =========================
-     Ava Bulletin – CSS
-     ========================= */
-
-    :root { 
-    /* Title size: between 50px and 70px */
-    --ava-title-size: clamp(50px, 5vh, 70px);
-
-    /* Danger badge size: between 22px and 32px */
-    --ava-badge-size: clamp(30px, 2.8vh, 50px);
-
-    /* Body size: between 20px and 30px, depending on viewport height */
-    --ava-body-size: clamp(20px, 1.9vh, 30px);
+    /* ===== Legacy fallback for older players (no CSS vars/clamp/grid) ===== */
+    .ava-bulletin { 
+      font-family: 'Nunito Sans', Arial, sans-serif;
+      font-size: 20px;         /* pick a good signage baseline */
+      font-weight: 200;
+      line-height: 1.5;
+      padding: 40px;
+      color: #111;
+      background: #fff;
+      box-sizing: border-box;
     }
     
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
-    
-    body {
-      display: flex;
-      justify-content: center;  /* horizontal center */
-      align-items: center;      /* vertical center */
-    }
-
-    .ava-bulletin {
-    font-family: 'DM Sans', Arial, sans-serif;
-    font-size: var(--ava-body-size);
-    font-weight: 300;
-    line-height: 1.5;
-    padding: 40px;  /* top right bottom left */
-    max-width: 2000px;
-    max-height: 100vh;
-    margin: 0 auto;
-    color: #111;
-    background: #fff;
-    box-sizing: border-box;
-    }
- 
     .ava-bulletin .ava-title {
-    font-family: 'DM Sans', Arial, sans-serif;
-    font-weight: 700;
-    font-size: var(--ava-title-size);
-    line-height: 1.1;
-    letter-spacing: 0.8px;
-    margin: 0;
-    padding: 0 0 16px 0;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+      font-family: 'DM Sans', Arial, sans-serif;
+      font-size: 50px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: 0.8px;
+      margin: 0;
+      padding: 0 0 16px 0;
     }
-
+    
     .ava-bulletin .ava-danger-badge {
-    font-family: 'DM Sans', Arial, sans-serif;
-    font-weight: 600;           
-    font-size: var(--ava-badge-size);          
-    line-height: 1.5;          
-    letter-spacing: 0.5px;          
-    padding: 4px 10px;          
-    border-radius: 4px;         
-    display: inline-block;
+      font-family: 'DM Sans', Arial, sans-serif;
+      font-size: 40px;
+      font-weight: 600;
+      line-height: 1.5;
+      letter-spacing: 0.5px;
+      border-radius: 4px;
     }
-
+    
     .ava-bulletin .ava-problem-text {
-    font-family: 'Nunito Sans', Arial, sans-serif;
-    font-weight: 200;
-    font-size: var(--ava-body-size);
-    letter-spacing: 0.1px;
-    line-height: 1.5;
-    margin: 0;        
-    padding: 0;
-    box-sizing: border-box;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+      font-family: 'Nunito Sans', Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 200;
+      line-height: 1.5;
+      margin: 0;
+      word-break: break-word;
     }
-
-    .ava-header {
+    
+    .ava-bulletin .ava-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -253,7 +214,7 @@ def styles():
     }
     .ava-header-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
 
-    .ava-grid {
+    .ava-bulletin .ava-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 40px;
@@ -261,7 +222,7 @@ def styles():
       margin-bottom: 30px;
     }
     .ava-col { min-width: 0; box-sizing: border-box; flex: 1 1 auto;}
-
+    
     .ava-problem { display: flex; align-items: flex-start; gap: 8px; }
     .ava-problem-meta { display: flex; flex-direction: column; gap: 10px; min-width: 0; flex: 0 0 280px; max-width: 280px;}
 
@@ -283,10 +244,6 @@ def styles():
 
     .ava-strong { font-weight: 700; }
 
-    /* The danger badge keeps SLF colors inline:
-       <span class="ava-danger-badge" style="background-color:#ffff00;color:#000000">…</span> */
-    .ava-danger-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-weight: 700; }
-
     .ava-updated-at {
       font-family: 'Nunito Sans', Arial, sans-serif;
       font-weight: 200;
@@ -300,32 +257,9 @@ def styles():
       background: transparent;
     }
 
-    /* Optional alert beacon (namespaced) */
-    .ava-alert-beacon{
-      position: fixed;
-      top: 90px;
-      right: 60px;
-      width: 50px; height: 50px;
-      border-radius: 50%;
-      background: #ff3b30; /* default red */
-      box-shadow:
-        0 0 0 3px rgba(255,59,48,.25),
-        0 0 12px rgba(255,59,48,.6);
-      z-index: 9999;
-      animation: ava-beacon-blink 1.2s steps(2, end) infinite; /* ~0.83 Hz */
-    }
-
-    @keyframes ava-beacon-blink{
-      0%,49%   { opacity: 1; }
-      50%,100% { opacity: .15; } /* dim instead of fully off */
-    }
-
-    /* Simple responsiveness if a narrower screen is used */
-    @media (max-width: 1024px) {
-      .ava-grid { grid-template-columns: 1fr; gap: 24px; }
-      .ava-header { flex-wrap: wrap; }
-    }
+    
     </style>
+
     </head>
     <body>
     <div class="ava-bulletin">
@@ -471,7 +405,7 @@ def render_group_card(g):
             f"<img src='static/images/{g['mountain_icon']}' class='ava-icon ava-icon'/>"
         )
     html_output.append(
-        f"<p class='ava-problem-text'><span class='ava-strong'>Höhenbereich:</span><br>{g['elev_text']}</p>"
+        f"<p class='ava-problem-meta'><span class='ava-strong'>Höhenbereich:</span><br>{g['elev_text']}</p>"
     )
     html_output.append("</div>")  # /.ava-row
 
@@ -482,7 +416,7 @@ def render_group_card(g):
             f"<img src='static/images/{g['fname']}' class='ava-icon ava-icon-rose' />"
         )
     html_output.append(
-        f"<p class='ava-problem-text'><span class='ava-strong'>Exposition:</span><br>{g['expo_text']}</p>"
+        f"<p class='ava-problem-meta'><span class='ava-strong'>Exposition:</span><br>{g['expo_text']}</p>"
     )
     html_output.append("</div>")  # /.ava-row
 
