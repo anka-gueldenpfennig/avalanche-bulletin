@@ -165,7 +165,7 @@ def styles():
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
 
     <style>
-    /* ===== Legacy fallback for S6 screens ===== */
+    /* ===== CSS (suitable for S6 & S10 screens) ===== */
     html, body {
       height: 100%;
       margin: 0;
@@ -192,7 +192,7 @@ def styles():
   
     .ava-bulletin .ava-title {
       font-family: 'DM Sans', Arial, sans-serif;
-      font-size: 45px;
+      font-size: 48px;
       font-weight: 700;
       line-height: 1.1;
       letter-spacing: 0.8px;
@@ -202,7 +202,7 @@ def styles():
     
     .ava-bulletin .ava-danger-badge {
       font-family: 'DM Sans', Arial, sans-serif;
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 600;
       line-height: 1.5;
       letter-spacing: 0.5px;
@@ -272,9 +272,7 @@ def styles():
       background: transparent;
     }
 
-    
     </style>
-
     </head>
     <body>
     <div class="ava-bulletin">
