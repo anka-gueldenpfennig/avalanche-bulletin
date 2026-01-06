@@ -206,6 +206,8 @@ def styles():
       font-weight: 600;
       line-height: 1.5;
       letter-spacing: 0.5px;
+      padding: 4px 10px;          
+      border-radius: 4px;         
       border-radius: 4px;
     }
     
