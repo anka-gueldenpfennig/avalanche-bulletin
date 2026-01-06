@@ -165,10 +165,23 @@ def styles():
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
 
     <style>
-    /* ===== Legacy fallback for older players (no CSS vars/clamp/grid) ===== */
-    .ava-bulletin { 
+    /* ===== Legacy fallback for S6 screens ===== */
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      display: table;
+      width: 100%;
+      height: 100%;
+    }    
+
+    .ava-bulletin {
+      display: table-cell;
+      vertical-align: middle; 
       font-family: 'Nunito Sans', Arial, sans-serif;
-      font-size: 20px;         /* pick a good signage baseline */
+      font-size: 20px;      
       font-weight: 200;
       line-height: 1.5;
       padding: 40px;
@@ -176,10 +189,10 @@ def styles():
       background: #fff;
       box-sizing: border-box;
     }
-    
+  
     .ava-bulletin .ava-title {
       font-family: 'DM Sans', Arial, sans-serif;
-      font-size: 50px;
+      font-size: 45px;
       font-weight: 700;
       line-height: 1.1;
       letter-spacing: 0.8px;
@@ -189,7 +202,7 @@ def styles():
     
     .ava-bulletin .ava-danger-badge {
       font-family: 'DM Sans', Arial, sans-serif;
-      font-size: 40px;
+      font-size: 35px;
       font-weight: 600;
       line-height: 1.5;
       letter-spacing: 0.5px;
@@ -198,7 +211,7 @@ def styles():
     
     .ava-bulletin .ava-problem-text {
       font-family: 'Nunito Sans', Arial, sans-serif;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 200;
       line-height: 1.5;
       margin: 0;
@@ -390,7 +403,7 @@ def render_group_card(g):
         else:
             # keep spacing aligned when there’s no icon
             html_output.append("<div style='width:48px; height:48px; flex:0 0 48px;'></div>")
-            label = "Kein ausgeprägtes<br>Lawinenproblem"
+            label = "Kein ausgeprägtes</br>Lawinenproblem"
 
         # label badge for problem type
         html_output.append(f"<span class='ava-chip'>{label}</span>")
@@ -405,7 +418,7 @@ def render_group_card(g):
             f"<img src='static/images/{g['mountain_icon']}' class='ava-icon ava-icon'/>"
         )
     html_output.append(
-        f"<p class='ava-problem-meta'><span class='ava-strong'>Höhenbereich:</span><br>{g['elev_text']}</p>"
+        f"<p class='ava-problem-meta'><span class='ava-strong'>Höhenbereich:</span></br>{g['elev_text']}</p>"
     )
     html_output.append("</div>")  # /.ava-row
 
@@ -416,7 +429,7 @@ def render_group_card(g):
             f"<img src='static/images/{g['fname']}' class='ava-icon ava-icon-rose' />"
         )
     html_output.append(
-        f"<p class='ava-problem-meta'><span class='ava-strong'>Exposition:</span><br>{g['expo_text']}</p>"
+        f"<p class='ava-problem-meta'><span class='ava-strong'>Exposition:</span></br>{g['expo_text']}</p>"
     )
     html_output.append("</div>")  # /.ava-row
 
