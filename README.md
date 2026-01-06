@@ -1,3 +1,3 @@
 HEAD
 # avalanche-bulletin
-SLF Avalanche Bulletin for leukerbad.ch (de) 
+SLF Avalanche Bulletin for leukerbad.ch (de & fr) 
