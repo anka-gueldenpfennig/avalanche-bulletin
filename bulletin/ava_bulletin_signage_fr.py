@@ -223,13 +223,26 @@ def styles():
     }
     .ava-header-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
 
-    .ava-bulletin .ava-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 40px;
-      align-items: start;
-      margin-bottom: 30px;
+    .ava-grid-flex {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: flex-start;
+          margin-bottom: 30px;     
+          gap: 40px; /* gap if supported */
     }
+        
+    /* Each card takes ~half width, wraps on small screens */
+    .ava-grid-flex .ava-grid-col {
+          flex: 1 1 calc(50% - 40px);
+          min-width: 0;
+          box-sizing: border-box;
+    }
+        
+    /* If gap isn't supported, approximate it with margins */
+    .ava-grid-flex .ava-grid-col {
+          margin-bottom: 40px;
+    }
+
     .ava-col { min-width: 0; box-sizing: border-box; flex: 1 1 auto;}
     
     .ava-problem { display: flex; align-items: flex-start; gap: 8px; }
@@ -265,6 +278,24 @@ def styles():
       color: #555;
       background: transparent;
     }
+    
+    .ava-alert-beacon { 
+        position:fixed; 
+        top:16px; 
+        right:20px; 
+        width:30px; 
+        height:30px; 
+        border-radius:50%; 
+        background:#ff3b30; /* default red */ 
+        box-shadow: 0 0 0 3px rgba(255,59,48,.25), 0 0 12px rgba(255,59,48,.6); 
+        z-index:9999; animation:beacon-blink 1.2s steps(2, end) infinite; 
+        /* ~0.83 Hz (safe) */ 
+    } 
+    
+    @keyframes beacon-blink { 
+        0%,49% { opacity:1; } 
+        50%,100% { opacity:.15; } /* dim instead of fully off = nicer */ 
+    }    
 
     </style>
     </head>
@@ -366,7 +397,7 @@ def render_group_card(g):
             types.append((pt, german))
 
     # --- one card (grid cell) ---
-    html_output.append("<div class='ava-col'>")
+    html_output.append("<div class='ava-col ava-grid-col'>")
 
     # inner: left (3+ rows type, altitude, exposition) + right (comment)
     html_output.append("<div class='ava-problem'>")
@@ -647,7 +678,7 @@ else:
         (other_groups if is_pure_other(g["problem_entries"]) else normal_groups).append(g)
 
     # Problems grid container (2 equal columns)
-    html_output.append("<div class='ava-grid'>")
+    html_output.append("<div class='ava-grid-flex'>")
 
     # Render normal groups, then pure 'other'
     for g in normal_groups:
