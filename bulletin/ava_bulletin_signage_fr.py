@@ -387,7 +387,7 @@ def html_header(mainValue, subdiv_value, warnings, hex_warnings):
     return html_header
 
 # make "card" for each problem type - render HTML
-def render_group_card(g):
+def render_group_card(g, one_col_only):
     # Deduplicate and order problem types for the header row
     seen = set()
     types = []
@@ -426,7 +426,7 @@ def render_group_card(g):
         else:
             # keep spacing aligned when there’s no icon
             html_output.append("<div style='width:48px; height:48px; flex:0 0 48px;'></div>")
-            label = 'Pas de problème avalancheux particulier'
+            label = 'Pas de problème<br>avalancheux<br>particulier'
 
         # label badge for problem type
         html_output.append(f"<span class='ava-chip'>{label}</span>")
@@ -462,12 +462,17 @@ def render_group_card(g):
     # RIGHT: comment
     html_output.append("<div class='ava-col' style='flex:1; min-width:140px;'>")
 
-    # conditional smaller font for long comments
-    if len({g['comment']}) > 700:
+    # conditional font size for the comment
+    # bigger font if only one column
+    if one_col_only:
+        html_output.append(f"<p class='ava-problem-text' style='font-size:25px; line-height:1.4;'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>")
+
+    # smaller font for long comments
+    elif len({g['comment']}) > 700:
         html_output.append(f"<p class='ava-problem-text' style='font-size:16px; line-height:1.4;'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>")
         print("long comment")
 
-    # still smaller for mid length comments
+    # medium for mid length comments
     elif len({g['comment']}) > 500:
         html_output.append(f"<p class='ava-problem-text' style='font-size:18px; line-height:1.4;'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>")
 
@@ -672,6 +677,11 @@ else:
         groups[k]["problem_entries"].append((pt, german))
         groups[k]["raw"].append(ap)
 
+    if len(groups) == 1:
+        one_col_only = True
+    else:
+        one_col_only = False
+
     normal_groups = []
     other_groups = []
     for g in groups.values():
@@ -682,9 +692,9 @@ else:
 
     # Render normal groups, then pure 'other'
     for g in normal_groups:
-        render_group_card(g)
+        render_group_card(g, one_col_only)
     for g in other_groups:
-        render_group_card(g)
+        render_group_card(g, one_col_only)
 
     html_output.append("</div>")  # end grid
 
