@@ -252,6 +252,15 @@ def styles():
     .ava-chip { display: inline-block; padding: 2px 8px; border-radius: 12px; background: #f2f2f2; font-weight: 700; white-space: nowrap; }
 
     .ava-row { display: flex; align-items: center; gap: 10px; }
+    
+    .ava-problem-meta-line{
+      font-family: 'Nunito Sans', Arial, sans-serif;
+      font-size: 20px;
+      font-weight: 200;
+      line-height: 1.5;
+      margin: 0;
+      word-break: break-word;
+    }
 
     .ava-icon {
         max-height: 100px;
@@ -438,11 +447,13 @@ def render_group_card(g, one_col_only):
     html_output.append("<div class='ava-chip-row'>")
     if g['mountain_icon']:
         html_output.append(
-            f"<img src='static/images/{g['mountain_icon']}' class='ava-icon ava-icon' />"
+            f"<img src='static/images/{g['mountain_icon']}' class='ava-icon ava-icon'/>"
         )
+
     html_output.append(
-        f"<p class='ava-problem-meta'><span class='ava-strong'>Plage d'altitude:</span> {g['elev_text']}</p>"
+        f"<div class='ava-problem-meta-line'><span class='ava-strong'>Plage d'altitude:</span> {g['elev_text']}</div>"
     )
+
     html_output.append("</div>")  # /.ava-row
 
     # Row 3: Exposition
@@ -451,9 +462,11 @@ def render_group_card(g, one_col_only):
         html_output.append(
             f"<img src='static/images/{g['fname']}' class='ava-icon ava-icon-rose' />"
         )
+
     html_output.append(
-        f"<p class='ava-problem-meta'><span class='ava-strong'>Exposition:</span> {g['expo_text']}</p>"
+        f"<div class='ava-problem-meta-line'><span class='ava-strong'>Exposition:</span> {g['expo_text']}</div>"
     )
+
     html_output.append("</div>")  # /.ava-row
 
     # close left
@@ -468,12 +481,12 @@ def render_group_card(g, one_col_only):
         html_output.append(f"<p class='ava-problem-text' style='font-size:25px; line-height:1.4;'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>")
 
     # smaller font for long comments
-    elif len({g['comment']}) > 700:
+    elif len(g['comment']) > 700:
         html_output.append(f"<p class='ava-problem-text' style='font-size:16px; line-height:1.4;'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>")
         print("long comment")
 
     # medium for mid length comments
-    elif len({g['comment']}) > 500:
+    elif len(g['comment']) > 500:
         html_output.append(f"<p class='ava-problem-text' style='font-size:18px; line-height:1.4;'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>")
 
     # standard for short/normal comments
