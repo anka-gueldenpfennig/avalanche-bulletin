@@ -357,7 +357,7 @@ def html_header(mainValue, subdiv_value, warnings, hex_warnings):
 
     # turn on warning light when level is 3 or higher (top right corner)
     if mainValue >= 3:
-        html_header.append(f"<div class='ava-alert-beacon' aria-hidden='true' title='Warnsignal'></div></div>")
+        html_header.append(f"<div class='ava-alert-beacon' aria-hidden='true' title='Warnsignal'></div>")
 
     # start section: overall danger rating (icon + text)
     html_header.append("<div class='ava-header'>")
