@@ -478,20 +478,20 @@ def render_group_card(g, one_col_only):
     # conditional font size for the comment
     # bigger font if only one column
     if one_col_only:
-        html_output.append(f"<p class='ava-problem-text' style='font-size:25px; line-height:1.4;'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>")
+        html_output.append(f"<p class='ava-problem-text' style='font-size:25px; line-height:1.4;'><span class='ava-strong'>Description des dangers:</span> {g['comment']}</p>")
 
     # smaller font for long comments
     elif len(g['comment']) > 700:
-        html_output.append(f"<p class='ava-problem-text' style='font-size:16px; line-height:1.4;'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>")
+        html_output.append(f"<p class='ava-problem-text' style='font-size:16px; line-height:1.4;'><span class='ava-strong'>Description des dangers:</span> {g['comment']}</p>")
         print("long comment")
 
     # medium for mid length comments
     elif len(g['comment']) > 500:
-        html_output.append(f"<p class='ava-problem-text' style='font-size:18px; line-height:1.4;'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>")
+        html_output.append(f"<p class='ava-problem-text' style='font-size:18px; line-height:1.4;'><span class='ava-strong'>Description des dangers:</span> {g['comment']}</p>")
 
     # standard for short/normal comments
     else:
-        html_output.append(f"<p class='ava-problem-text'><span class='ava-strong'>Gefahrenbeschrieb:</span> {g['comment']}</p>")
+        html_output.append(f"<p class='ava-problem-text'><span class='ava-strong'>Description des dangers:</span> {g['comment']}</p>")
 
     html_output.append("</div>")  # /.ava-col (right)
 
