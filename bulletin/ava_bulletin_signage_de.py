@@ -528,7 +528,7 @@ warning_numbers = {
     "moderate": 2,
     "considerable": 3,
     "high": 4,
-    "very high": 5
+    "very_high": 5
 }
 
 warnings = {
